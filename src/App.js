@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Campuses from './components/campuses';
 import Students from './components/students';
-import Home from './pages/Home';
+import Home from './components/Home';
 
 function App() {
   return (
