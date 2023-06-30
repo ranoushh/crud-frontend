@@ -1,7 +1,7 @@
 import studentsActionTypes from "./students.type";
 
 //initial empty array for students
-const Initial_State = {
+export const Initial_State = {
     allStudents: [],
 };
 

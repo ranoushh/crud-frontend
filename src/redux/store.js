@@ -22,12 +22,12 @@ const logger = createLogger({ collapsed: true });
 
 // Apply the middleware to our store, also use Redux DevTools extension if available
 const middleware = composeWithDevTools(
-  // Thunk middleware is being configured here to include axios in every dispatched function
-  // This allows for easy access to axios within our thunks for making API requests
+//   // Thunk middleware is being configured here to include axios in every dispatched function
+//   // This allows for easy access to axios within our thunks for making API requests
   applyMiddleware(thunkMiddleware.withExtraArgument({ axios }), logger)
 );
 
-// Create the Redux store with our combined reducer and the middleware
+// // Create the Redux store with our combined reducer and the middleware
 const store = createStore(allReducers, middleware);
 
 // Export the store as the default export
