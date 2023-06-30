@@ -11,17 +11,12 @@ function App() {
       <div className="App">
         {/* Navigation */}
         <nav>
-          <ul>
-            <li>
+
               <Link to="/">Home</Link>
-            </li>
-            <li>
+              <br></br>
               <Link to="/campuses">Campuses</Link>
-            </li>
-            <li>
+              <br></br>
               <Link to="/students">Students</Link>
-            </li>
-          </ul>
         </nav>
 
         {/* Routes */}
