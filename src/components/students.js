@@ -29,7 +29,7 @@ export default function Students() {
         <ul>
           {allStudents.map((student, index) => (
             <li key={index}>
-              <p>Student: {student.firstname}{student.lastname}</p>
+              <p>Student: {student.firstname} {student.lastname}</p>
             </li>
           ))}
         </ul>
