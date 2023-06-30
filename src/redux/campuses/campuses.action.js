@@ -4,7 +4,7 @@ import axios from "axios";
 import campusesActionTypes from "./campuses.type";
 
 //action creator
-const fetchAllCampuses = (payload) => ({
+export const fetchAllCampuses = (payload) => ({
     type:campusesActionTypes.fetch_all_campuses, //action  type
     payload: payload, //data to be sent w/ action this is the data taken from thunk
 })
@@ -12,10 +12,10 @@ const fetchAllCampuses = (payload) => ({
 // Thunk fetches data from our endpoint, and we return it to our action, 
 //so that when action is called it has the data needed
 
-const fetchAllCampusesThunk = () => {
+export const fetchAllCampusesThunk = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get("http://localhost:8080/") //!!!ADD ENDPOINT LATER!!!
+            const response = await axios.get("http://localhost:8080/api/campus") 
             console.log("data", response.data)
             dispatch(fetchAllCampuses(response.data));
         }catch (error){

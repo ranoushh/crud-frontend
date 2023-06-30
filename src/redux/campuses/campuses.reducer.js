@@ -1,7 +1,7 @@
 import campusesActionTypes from "./campuses.type";
 
 //initial empty array for campuses
-const Initial_State = {
+export const Initial_State = {
     allCampuses: [],
 };
 
