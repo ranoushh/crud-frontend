@@ -24,7 +24,7 @@ function AddStudents() {
         })
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         // const submitObj = {
         //     firstName: state.firstName,
         //     lastName: state.lastName, 
@@ -34,8 +34,7 @@ function AddStudents() {
         // };
         //above no longer necessary b/c consts are all contained w/i state
 
-        //event.preventDefault(); does not work, have not figured out how to FIX IT
-        //event.preventDefault();
+        event.preventDefault();
         console.log(state)
     };
 
