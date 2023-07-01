@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Campuses from './components/campuses';
 import Students from './components/students';
+import AddStudents from './components/AddStudents';
 import Home from './components/Home';
 
 function App() {
@@ -13,10 +13,12 @@ function App() {
         <nav>
 
               <Link to="/">Home</Link>
-              <br></br>
+              <br/>
               <Link to="/campuses">Campuses</Link>
-              <br></br>
+              <br/>
               <Link to="/students">Students</Link>
+              <br/>
+              <Link to="/AddStudents">Add Students</Link>
         </nav>
 
         {/* Routes */}
@@ -24,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/campuses" element={<Campuses />} />
           <Route path="/students" element={<Students />} />
+          <Route path = "/AddStudents" element={<AddStudents/>} />
         </Routes>
       </div>
     </Router>
