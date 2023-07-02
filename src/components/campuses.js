@@ -23,14 +23,13 @@ export default function Campuses() {
     <div>
         <h1>All Campuses</h1>
 
-
-        <div style = {{display: 'inline', float: 'left'}} >
+        <div>
             {allCampuses.length > 0 ? (
         <ul>
           {allCampuses.map((campus, index) => (
-            <li key={index} N>
+            <li key={index}   style = {{display: 'inline-block', marginRight: '15px'}} >
               <p>
-                <h4> Campus: {campus.name} </h4>
+                <h4>{campus.name} </h4> {campus.address} 
               <p></p> 
               <img style={{ width: 350, height: 300 }} src= {campus.imageurl}></img></p>
             </li>

@@ -4,6 +4,7 @@ import Campuses from './components/campuses';
 import Students from './components/students';
 import AddStudents from './components/AddStudents';
 import Home from './components/Home';
+import AddCampus from './components/AddCampus';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
               <Link to="/students">Students</Link>
               <br/>
               <Link to="/AddStudents">Add Students</Link>
+              <br/>
+              <Link to="/AddCampus">Add Campus</Link>
         </nav>
 
         {/* Routes */}
@@ -27,6 +30,7 @@ function App() {
           <Route path="/campuses" element={<Campuses />} />
           <Route path="/students" element={<Students />} />
           <Route path = "/AddStudents" element={<AddStudents/>} />
+          <Route path = "/addcampus" element={<AddCampus/>} />
         </Routes>
       </div>
     </Router>
