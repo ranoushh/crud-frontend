@@ -1,6 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {addNewCampusThunk} from "../redux/campuses/campuses.action"
 
 function AddCampus (){
     const [newCampus, setNewCampus] = useState({
@@ -9,6 +10,8 @@ function AddCampus (){
         address: "",
         description: ""
     });
+    const allCampuses = useSelector((newCampus) => newCampus.campuses.allCampuses);
+    const dispatch = useDispatch();
 
     // //clear form - didnt work
     // function clear(){
@@ -21,35 +24,50 @@ function AddCampus (){
     };
 
     function handleSubmit(event) {
+        event.preventDefault();
         console.log(newCampus);
-        
-        try {
-            axios.post('http://localhost:8080/api/campus/addCampus', {
-                name: newCampus.campusName,
-                imageurl: newCampus.imageUrl,
-                address: newCampus.address,
-                description: newCampus.description
-            })
-            .then(response => {
-                console.log(response.data);
+    
+        const submitObj = {
+          name: newCampus.campusName,
+          address: newCampus.address,
+          imageurl: newCampus.imageUrl,
+          description: newCampus.description
+        };
+        console.log("my obj is:", submitObj);
+        dispatch(addNewCampusThunk(submitObj));
 
-                //clear form here after data is used 
-                setNewCampus({
-                    campusName: "",
-                    imageUrl: "",
-                    address: "",
-                    description: ""
-                });
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
+        setNewCampus({
+            campusName: "",
+            imageUrl: "",
+            address: "",
+            description: ""
+        });
+      }
+    // function handleSubmit(event) {
+    //     console.log(newCampus);
+        
+    //     try {
+    //         axios.post('http://localhost:8080/api/campus/addCampus', {
+    //             name: newCampus.campusName,
+    //             imageurl: newCampus.imageUrl,
+    //             address: newCampus.address,
+    //             description: newCampus.description
+    //         })
+    //         .then(response => {
+    //             console.log(response.data);
+
+    //             //clear form here after data is used 
+    //             
+    //         });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     
     return(
         <div>
-            <h1>Add a Campus:</h1>
+            <h1 style = {{fontFamily:'georgia,garamond,serif'}} >Add Campus:</h1>
             <form id="form" >
             <p></p>
                 College Name: <input type = "text" 

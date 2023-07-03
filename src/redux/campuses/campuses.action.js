@@ -9,6 +9,11 @@ export const fetchAllCampuses = (payload) => ({
     payload: payload, //data to be sent w/ action this is the data taken from thunk
 })
 
+
+export const addNewCampus = (payload) => ({
+    type: campusesActionTypes.add_new_campus,
+    payload: payload,
+  });
 // Thunk fetches data from our endpoint, and we return it to our action, 
 //so that when action is called it has the data needed
 
@@ -23,3 +28,28 @@ export const fetchAllCampusesThunk = () => {
         }
     }
 }
+
+export const addNewCampusThunk = ({
+    name,
+    address,
+    imageUrl,
+    description
+  }) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/api/campus/addCampus",
+          {
+            name: name,
+            address: address,
+            imageUrl: imageUrl,
+            description: description
+          }
+        );
+        console.log(response);
+        dispatch(addNewCampus(response.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };

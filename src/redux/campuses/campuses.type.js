@@ -2,7 +2,8 @@
 //avoid errors
 
 const campusesActionTypes ={
-    fetch_all_campuses: "FETCH ALL CAMPUSES"
+    fetch_all_campuses: "FETCH ALL CAMPUSES",
+    add_new_campus: "ADD NEW CAMPUS"
 };
 
 export default campusesActionTypes;

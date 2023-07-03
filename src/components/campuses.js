@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import {  useDispatch, useSelector } from 'react-redux';
 import {fetchAllCampusesThunk} from "../redux/campuses/campuses.action"
+import axios from 'axios';
+import {Link} from "react-router-dom"
 
 export default function Campuses() {
 
@@ -19,17 +21,55 @@ export default function Campuses() {
       fetchAllCampuses();
     }, []);
 
+    async function deleteCampus(id){
+      console.log("reached")
+      try {
+        const response = await axios({
+           url: 'https://example.com/api/campus/${id}', 
+           method: 'delete',
+           data: {id}
+        });
+        console.log(response.data);
+     } catch (error) {
+        console.error(error);
+     }
+
+
+        // try {
+        //     axios.delete('http://localhost:8080/api/campus/removeCampus/${id}')
+        //     .then(response => {
+        //         console.log('deleted:  ${id}');
+        //     });
+        // } catch (error) {
+        //     console.log(error);
+        // };
+
+        // fetchAllCampuses();
+    }
+
   return (
     <div>
-        <h1>All Campuses</h1>
+      <br></br>
+        <h1 style = {{fontFamily:'georgia,garamond,serif', fontSize:'40px', fontStyle:'italic'}}>All Campuses</h1>
+        {/* <a href="/addcampus">
+          <button>Add Campus</button>
+        </a> */}
+
+      <Link to="/addcampus">
+        <button>Add New Campus</button>
+      </Link>
 
         <div>
             {allCampuses.length > 0 ? (
         <ul>
-          {allCampuses.map((campus, index) => (
-            <li key={index}   style = {{display: 'inline-block', marginRight: '15px'}} >
+          {allCampuses.map((campus) => (
+            <li key={campus.id}   
+                style = {{display: 'inline-block', marginRight: '70px'}} >
               <p>
-                <h4>{campus.name} </h4> {campus.address} 
+                <h4 style= {{fontFamily:'georgia,garamond,serif'}} > {campus.name}  <m></m>
+                <button onClick={() => deleteCampus(campus.id)} id= "delete"> x </button> 
+                </h4> {campus.address}
+
               <p></p> 
               <img style={{ width: 350, height: 300 }} src= {campus.imageurl}></img></p>
             </li>
