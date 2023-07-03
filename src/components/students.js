@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {  useDispatch, useSelector } from 'react-redux';
-import {fetchAllStudentsThunk} from "../redux/students/students.action"
-
+import {fetchAllStudentsThunk, deleteStudentThunk} from "../redux/students/students.action"
+import {Link} from "react-router-dom"
 
 export default function Students() {
 
@@ -14,7 +14,13 @@ export default function Students() {
     console.log('RUNNING DISPATCH FROM fetchAllStudents')
     return dispatch(fetchAllStudentsThunk());
   };
-   
+  
+  function deleteStudent(id){
+    console.log("delete student button reached")
+      dispatch(deleteStudentThunk(id));
+  };
+
+
     useEffect(() => {
       console.log('FETCH ALL STUDENTS FIRING IN USEEFFECT')
       fetchAllStudents();
@@ -22,14 +28,20 @@ export default function Students() {
 
   return (
     <div>
-        <h1>All Students</h1>
+        <h1 style = {{fontFamily:'georgia,garamond,serif', fontSize:'40px', fontStyle:'italic'}}>All Students</h1>
 
+        <Link to="/addstudents">
+        <button>Add a New Student</button>
+      </Link>
 
         {allStudents.length > 0 ? (
         <ul>
           {allStudents.map((student, index) => (
             <li key={index}>
-              <p>Student: {student.firstname} {student.lastname}</p>
+              <p>
+              <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}  
+              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button> </h4>
+              </p>
             </li>
           ))}
         </ul>

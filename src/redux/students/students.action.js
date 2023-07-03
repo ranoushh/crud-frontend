@@ -13,6 +13,11 @@ export const addNewStudent = (payload) => ({
   payload: payload,
 });
 
+export const deleteStudent = (id) => ({
+  type: studentsActionTypes.delete_a_student,
+  payload: id
+});
+
 // Thunk
 
 export const fetchAllStudentsThunk = () => {
@@ -53,5 +58,20 @@ export const addNewStudentThunk = ({
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const deleteStudentThunk = (id) => {
+  return async (dispatch) => {
+  try {
+          const response = await axios({
+             url: `http://localhost:8080/api/student/removeStudent/${id}`, 
+             method: 'delete'
+          });
+          console.log(id);
+          dispatch(deleteStudent(id));
+       } catch (error) {
+          console.error(error);
+      };
   };
 };

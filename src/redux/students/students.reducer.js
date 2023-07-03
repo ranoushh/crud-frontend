@@ -15,7 +15,10 @@ const studentReducer = (state = Initial_State, action) => {
       return { ...state, allStudents: action.payload };
     case studentsActionTypes.add_a_student:
       return { ...state, allStudents: [...state.allStudents, action.payload] };
-    default:
+      case studentsActionTypes.delete_a_student:
+        return {...state,
+            allStudents: state.allStudents.filter(allStudents => allStudents.id !== action.payload)};
+      default:
       return state;
   }
 };
