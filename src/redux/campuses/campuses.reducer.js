@@ -13,6 +13,8 @@ const campusReducer = (state=Initial_State, action) => {
         case campusesActionTypes.fetch_all_campuses:
             //putting payload from fetch into the initial empty array
             return{...state, allCampuses: action.payload};
+        case campusesActionTypes.add_new_campus:
+            return { ...state, allCampuses: [...state.allCampuses, action.payload] };
         default:
             return state;
     }
