@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function AddStudents() {
     // const [firstName, setfirstName] = useState('')
@@ -9,66 +10,135 @@ function AddStudents() {
 
     //setting consts within state 
     const [state, setState] = useState({
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
-        imgURL: "",
+        imageurl: "",
         gpa: 0.00,
+        CampusId: null
     })
 
-    const handleChange = (event) => {
-        const value = event.target.value;
+    function handleChange (event) {
+        console.log(state);
+        console.log(event)
+        //event.target.value;
         setState({
             ...state,
-            [event.target.name]: value,
+            [event.target.name]: event.target.value,
         })
     };
 
-    const handleSubmit = (event) => {
+    function handleSubmit (event)  {
         // const submitObj = {
-        //     firstName: state.firstName,
+        //     firstname: state.firstname,
         //     lastName: state.lastName, 
         //     email: state.email, 
         //     imgURL: state.imgURL, 
         //     gpa: state.gpa
         // };
         //above no longer necessary b/c consts are all contained w/i state
-
-        event.preventDefault();
+       event.preventDefault();
         console.log(state)
+       
+        try {
+            axios.post('http://localhost:8080/api/student/addStudent', {
+                firstname: state.firstname,
+                lastname: state.lastname,
+                email: state.email,
+                imageurl: state.imageurl,
+                gpa: state.gpa,
+                CampusId: state.CampusId
+            })
+            .then(response => {
+                console.log(response.data);
+
+                //clear form here after data is used 
+                setState({
+                    firstname: "",
+                    lastname: "",
+                    email: "",
+                    imageurl: "",
+                    gpa: "",
+                    CampusId: ""
+                });
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+
     };
 
 
   return (
     <div><h1>Add a New Student!</h1>
-    <form onSubmit={handleSubmit}>
+    <form >
         <label>
-            First Name: 
-        <input type="text" defaultValue={state.firstName} onChange={handleChange} ></input>
+            First Name: <input type="text" 
+            name="firstname"
+            defaultValue={state.firstName} 
+            onChange={handleChange} 
+            placeholder="Enter First Name"></input>
         </label>
         <br />
         <label>
-            Last Name: 
-        <input type="text" defaultValue={state.lastName} onChange={handleChange}></input>
+            Last Name: <input type="text"
+            name="lastname" 
+            defaultValue={state.lastname} 
+            onChange={handleChange}
+            placeholder="Enter Last Name">
+            </input>
         </label>
         <br />
         <label>
-            E-Mail: 
-        <input type="text" defaultValue={state.email} onChange={handleChange}></input>
+            E-Mail:  <input type="text"
+            name="email" 
+            defaultValue={state.email} 
+            onChange={handleChange}
+            placeholder="Enter E-Mail Address">
+
+            </input>
         </label>
         <br />
         <label>
-            Image URL: 
-        <input type="text" defaultValue={state.imgURL} onChange={handleChange}></input>
+            Image URL: <input type="text"
+            name="imageurl" 
+            defaultValue={state.imageurl} 
+            onChange={handleChange}
+            placeholder="Enter Image URL">
+
+            </input>
         </label>
         <br />
         <label>
-            GPA: 
-        <input type="number" step="0.01" defaultValue={state.gpa} onChange={handleChange}></input>
+            GPA: <input type="number" 
+            name="gpa"
+            max={4.0}
+            min={0.0}
+            step="0.01" 
+            defaultValue={state.gpa} 
+            onChange={handleChange}
+            placeholder="Enter GPA">
+
+            </input>
         </label>
         <br />
-        <input onSubmit={handleSubmit} type="submit" value="Submit!!!!"></input>
+        <label>
+            Campus ID: <input type="number"
+            name = "CampusId"
+            step="01" 
+            defaultValue={state.CampusId} 
+            onChange={handleChange}
+            placeholder="Enter Campus ID">
+            </input>
+        </label>
+        <br />
     </form>
+    <button
+        type="submit"
+        id="submit" 
+        onClick={handleSubmit} 
+        >Submit</button>
     </div>
   )
 }
