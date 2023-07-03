@@ -6,11 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 function AddStudents() {
   const allStudents = useSelector((state) => state.students.allStudents);
   const dispatch = useDispatch();
-  // const [firstName, setfirstName] = useState('')
-  // const [lastName, setlastName] = useState('')
-  // const [email, setemail] = useState('')
-  // const [imgURL, setimgURL] = useState('')
-  // const [gpa, setgpa] = useState(0)
 
   //setting consts within state
   const [state, setState] = useState({
@@ -26,10 +21,11 @@ function AddStudents() {
     console.log(state);
     // console.log(event);
     //event.target.value;
-    setState({
-      ...state,
+    //changed state tom prevState below to prevent an infinite loop of setState
+    setState((prevState) => ({
+      ...prevState,
       [event.target.name]: event.target.value,
-    });
+    }));
   }
 
   function handleSubmit(event) {
@@ -48,16 +44,25 @@ function AddStudents() {
     dispatch(addNewStudentThunk(submitObj));
   }
 
+  setState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    imageurl: "",
+    gpa: 0.0,
+    CampusId: null
+});
+
   return (
     <div>
-      <h1>Add a New Student!</h1>
+      <h1 style = {{fontFamily:'georgia,garamond,serif'}}>Add a New Student!</h1>
       <form>
         <label>
           First Name:{" "}
           <input
             type="text"
             name="firstname"
-            defaultValue={state.firstName}
+            value={state.firstName}
             onChange={handleChange}
             placeholder="Enter First Name"
           ></input>
@@ -68,7 +73,7 @@ function AddStudents() {
           <input
             type="text"
             name="lastname"
-            defaultValue={state.lastname}
+            value={state.lastname}
             onChange={handleChange}
             placeholder="Enter Last Name"
           ></input>
@@ -79,7 +84,7 @@ function AddStudents() {
           <input
             type="text"
             name="email"
-            defaultValue={state.email}
+            value={state.email}
             onChange={handleChange}
             placeholder="Enter E-Mail Address"
           ></input>
@@ -90,7 +95,7 @@ function AddStudents() {
           <input
             type="text"
             name="imageurl"
-            defaultValue={state.imageurl}
+            value={state.imageurl}
             onChange={handleChange}
             placeholder="Enter Image URL"
           ></input>
@@ -104,7 +109,7 @@ function AddStudents() {
             max={4.0}
             min={0.0}
             step="0.01"
-            defaultValue={state.gpa}
+            value={state.gpa}
             onChange={handleChange}
             placeholder="Enter GPA"
           ></input>
@@ -116,7 +121,7 @@ function AddStudents() {
             type="number"
             name="CampusId"
             step="01"
-            defaultValue={state.CampusId}
+            value={state.CampusId}
             onChange={handleChange}
             placeholder="Enter Campus ID"
           ></input>
