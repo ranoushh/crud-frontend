@@ -20,7 +20,7 @@ function AddCampus (){
         setNewCampus({ ...newCampus, [event.target.name]: event.target.value });
     };
 
-    function handleSubmit(event) {
+    function handleSubmit() {
         console.log(newCampus);
         
         try {
@@ -49,7 +49,7 @@ function AddCampus (){
     
     return(
         <div>
-            <h1>Add a Campus:</h1>
+            <h1>Add Campus:</h1>
             <form id="form" >
             <p></p>
                 College Name: <input type = "text" 

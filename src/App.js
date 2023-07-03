@@ -11,17 +11,16 @@ function App() {
     <Router>
       <div className="App">
         {/* Navigation */}
+
+        <br></br>
+
         <nav>
 
-              <Link to="/">Home</Link>
-              <br/>
-              <Link to="/campuses">Campuses</Link>
-              <br/>
-              <Link to="/students">Students</Link>
-              <br/>
-              <Link to="/AddStudents">Add Students</Link>
-              <br/>
-              <Link to="/AddCampus">Add Campus</Link>
+              <Link to="/" style={{marginLeft: '240px', float: 'left'}}>Home</Link> {" "}
+              <Link to="/students" style={{marginRight: '140px', float: 'right'}}>Students</Link> {" "}
+              <Link to="/campuses" style={{marginRight: '10px', float: 'right'}}>Campuses</Link> {" "}
+              <Link to="/AddStudents">Add Students</Link> {" "}
+              {/* <Link to="/addcampus">Add Campus</Link> {" "} */}
         </nav>
 
         {/* Routes */}
