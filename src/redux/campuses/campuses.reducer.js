@@ -15,6 +15,9 @@ const campusReducer = (state=Initial_State, action) => {
             return{...state, allCampuses: action.payload};
         case campusesActionTypes.add_new_campus:
             return { ...state, allCampuses: [...state.allCampuses, action.payload] };
+        case campusesActionTypes.delete_campus:
+            return {...state,
+                allCampuses: state.allCampuses.filter(allCampuses => allCampuses.id !== action.payload)};
         default:
             return state;
     }

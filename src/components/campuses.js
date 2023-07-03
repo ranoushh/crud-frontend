@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {  useDispatch, useSelector } from 'react-redux';
-import {fetchAllCampusesThunk} from "../redux/campuses/campuses.action"
+import {deleteCampusThunk, fetchAllCampusesThunk} from "../redux/campuses/campuses.action"
 import axios from 'axios';
 import {Link} from "react-router-dom"
 
@@ -21,31 +21,11 @@ export default function Campuses() {
       fetchAllCampuses();
     }, []);
 
-    async function deleteCampus(id){
-      console.log("reached")
-      try {
-        const response = await axios({
-           url: 'https://example.com/api/campus/${id}', 
-           method: 'delete',
-           data: {id}
-        });
-        console.log(response.data);
-     } catch (error) {
-        console.error(error);
-     }
 
-
-        // try {
-        //     axios.delete('http://localhost:8080/api/campus/removeCampus/${id}')
-        //     .then(response => {
-        //         console.log('deleted:  ${id}');
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // };
-
-        // fetchAllCampuses();
-    }
+    function deleteCampus(id){
+      console.log("button")
+        dispatch(deleteCampusThunk(id));
+    };
 
   return (
     <div>
