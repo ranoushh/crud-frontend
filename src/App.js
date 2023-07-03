@@ -19,7 +19,7 @@ function App() {
               <Link to="/" style={{marginLeft: '240px', float: 'left'}}>Home</Link> {" "}
               <Link to="/students" style={{marginRight: '140px', float: 'right'}}>Students</Link> {" "}
               <Link to="/campuses" style={{marginRight: '10px', float: 'right'}}>Campuses</Link> {" "}
-              <Link to="/AddStudents">Add Students</Link> {" "}
+              {/* <Link to="/AddStudents">Add Students</Link> {" "} */}
               {/* <Link to="/addcampus">Add Campus</Link> {" "} */}
         </nav>
 
