@@ -5,21 +5,53 @@ import studentsActionTypes from "./students.type";
 
 //action creator
 export const fetchAllStudents = (payload) => ({
-    type:studentsActionTypes.fetch_all_students, //action  type
-    payload: payload, //data to be sent w/ action
-})
+  type: studentsActionTypes.fetch_all_students, //action  type
+  payload: payload, //data to be sent w/ action
+});
+export const addNewStudent = (payload) => ({
+  type: studentsActionTypes.add_a_student,
+  payload: payload,
+});
 
 // Thunk
 
 export const fetchAllStudentsThunk = () => {
-    return async (dispatch) => {
-        try {
-            const response = await axios.get("http://localhost:8080/api/student")
-            console.log("data", response.data)
-            dispatch(fetchAllStudents(response.data));
-        }catch (error){
-            console.error(error);
-        }
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/student");
+      console.log("data", response.data);
+      dispatch(fetchAllStudents(response.data));
+    } catch (error) {
+      console.error(error);
     }
-}
+  };
+};
 
+export const addNewStudentThunk = ({
+  firstname,
+  lastname,
+  email,
+  imageurl,
+  gpa,
+  CampusId,
+}) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/student/addStudent",
+        {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          imageurl: imageurl,
+          gpa: gpa,
+          CampusId: CampusId,
+        }
+      );
+      console.log(response);
+      dispatch(addNewStudent(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
