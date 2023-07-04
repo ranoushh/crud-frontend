@@ -22,10 +22,10 @@ function AddStudents() {
     // console.log(event);
     //event.target.value;
     //changed state tom prevState below to prevent an infinite loop of setState
-    setState((prevState) => ({
-      ...prevState,
+    setState({
+      ...state,
       [event.target.name]: event.target.value,
-    }));
+    });
   }
 
   function handleSubmit(event) {
@@ -42,16 +42,19 @@ function AddStudents() {
     };
     console.log("my obj is:", submitObj);
     dispatch(addNewStudentThunk(submitObj));
+
+    setState({
+      firstname: "",
+      lastname: "",
+      email: "",
+      imageurl: "",
+      gpa: 0.0,
+      CampusId: null
+  });
+
   }
 
-  setState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    imageurl: "",
-    gpa: 0.0,
-    CampusId: null
-});
+ 
 
   return (
     <div>
@@ -62,7 +65,7 @@ function AddStudents() {
           <input
             type="text"
             name="firstname"
-            value={state.firstName}
+            value={state.firstname}
             onChange={handleChange}
             placeholder="Enter First Name"
           ></input>
@@ -115,18 +118,19 @@ function AddStudents() {
           ></input>
         </label>
         <br />
-        <label>
+        {/* <label>
           Campus ID:{" "}
           <input
             type="number"
             name="CampusId"
+            min={1}
             step="01"
             value={state.CampusId}
             onChange={handleChange}
             placeholder="Enter Campus ID"
           ></input>
-        </label>
-        <br />
+        </label> 
+        <br />*/}
       </form>
       <button type="submit" id="submit" onClick={handleSubmit}>
         Submit

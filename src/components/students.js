@@ -4,10 +4,7 @@ import {fetchAllStudentsThunk, deleteStudentThunk} from "../redux/students/stude
 import {Link} from "react-router-dom"
 
 export default function Students() {
-
-      //need our allStudents array.
-    //array will have the name, image, address, description,
-    //name and address cannot be null
+//allStudents accesses global state here to fetch all students in the db
     const allStudents = useSelector(state => state.students.allStudents);
     const dispatch = useDispatch();
     const fetchAllStudents = () => {
@@ -23,6 +20,7 @@ export default function Students() {
 
     useEffect(() => {
       console.log('FETCH ALL STUDENTS FIRING IN USEEFFECT')
+      //loads all students from db when the allStudents array is empty upon rendering
       fetchAllStudents();
     }, []);
 
