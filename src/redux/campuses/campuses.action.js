@@ -19,6 +19,12 @@ export const deleteCampus = (id) => ({
     payload: id
 });
 
+//updateCampus is the info we are changing 
+export const editCampus = (updateCampus) => ({
+  type: campusesActionTypes.edit_campus,
+  payload: updateCampus
+});
+
 
 // Thunk fetches data from our endpoint, and we return it to our action, 
 //so that when action is called it has the data needed
@@ -73,4 +79,16 @@ export const deleteCampusThunk = (id) => {
             console.error(error);
         };
     };
+};
+
+export const editCampusThunk = (id, updateCampus) => {
+  return async (dispatch) => {
+    try {
+        const response = await axios.put(`http://localhost:8080/api/campus/updateCampus/${id}`, updateCampus);
+        console.log(response.data);
+        dispatch(editCampus(response.data));
+    } catch (error) {
+        console.error(error);
+    };
+  };
 };
