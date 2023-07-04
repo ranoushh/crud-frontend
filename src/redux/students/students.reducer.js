@@ -14,9 +14,11 @@ const studentReducer = (state = Initial_State, action) => {
       //putting payload from fetch into the initial empty array
       return { ...state, allStudents: action.payload };
     case studentsActionTypes.add_a_student:
+      //replaces allStudents with a new version where the student to be added is included in the allstudents array
       return { ...state, allStudents: [...state.allStudents, action.payload] };
     case studentsActionTypes.delete_a_student:
       return {...state,
+        //returns a filtered version of the allstudents array where it is replaced with a version of the array where the deleted student is filtered out
           allStudents: state.allStudents.filter(allStudents => allStudents.id !== action.payload)};
     case studentsActionTypes.edit_a_student:
       return { ...state,
