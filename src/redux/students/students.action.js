@@ -3,7 +3,7 @@
 import axios from "axios";
 import studentsActionTypes from "./students.type";
 
-//action creator
+//action creators
 export const fetchAllStudents = (payload) => ({
   type: studentsActionTypes.fetch_all_students, //action  type
   payload: payload, //data to be sent w/ action
@@ -18,7 +18,12 @@ export const deleteStudent = (id) => ({
   payload: id
 });
 
-// Thunk
+export const editStudent = (updateInput) => ({
+  type: studentsActionTypes.edit_a_student,
+  payload: updateInput
+});
+
+// Thunks
 
 export const fetchAllStudentsThunk = () => {
   return async (dispatch) => {
@@ -70,6 +75,20 @@ export const deleteStudentThunk = (id) => {
           });
           console.log(id);
           dispatch(deleteStudent(id));
+       } catch (error) {
+          console.error(error);
+      };
+  };
+};
+
+export const editStudentThunk = (id, updateInput) => {
+  return async (dispatch) => {
+  try {
+          const response = await axios.put(
+             `http://localhost:8080/api/student/updateStudent/${id}`, updateInput
+          );
+          console.log(response.data);
+          dispatch(editStudent(response.data));
        } catch (error) {
           console.error(error);
       };
