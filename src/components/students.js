@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {  useDispatch, useSelector } from 'react-redux';
-import {fetchAllStudentsThunk, deleteStudentThunk} from "../redux/students/students.action"
+import {fetchAllStudentsThunk, deleteStudentThunk, editStudentThunk} from "../redux/students/students.action"
 import {Link} from "react-router-dom"
 
 export default function Students() {
@@ -17,6 +17,10 @@ export default function Students() {
       dispatch(deleteStudentThunk(id));
   };
 
+  function editStudent(id){
+    console.log("delete student button reached")
+      dispatch(editStudentThunk(id));
+  };
 
     useEffect(() => {
       console.log('FETCH ALL STUDENTS FIRING IN USEEFFECT')
@@ -38,7 +42,8 @@ export default function Students() {
             <li key={index}>
               <p>
               <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}  
-              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button> </h4>
+              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
+              <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </h4>
               </p>
             </li>
           ))}
