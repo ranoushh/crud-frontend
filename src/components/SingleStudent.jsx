@@ -3,6 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { editStudentThunk } from "../redux/students/students.action";
+import { useDispatch } from "react-redux";
 
 const SingleStudent = (props) => {
   const [student, setStudent] = useState(undefined);
@@ -24,6 +27,12 @@ const SingleStudent = (props) => {
     fetchStudent();
   }, [id]);
 
+  const dispatch= useDispatch();
+
+  function editStudent(student){
+    dispatch(editStudentThunk(student));
+  }
+
   return (
     <div>
       {student ? (
@@ -35,6 +44,10 @@ const SingleStudent = (props) => {
             src={student.imageurl}
             alt={student.firstname}
           />
+          <p></p>
+          <Link to={`/students/editStudent/${student.id}`}>
+            <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> 
+          </Link>
           {student.CampusId !== null ? (
             <div>
               <img
@@ -42,8 +55,9 @@ const SingleStudent = (props) => {
                 src={student.Campus.imageurl}
                 alt=""
               />
-              <h2>{student.Campus.name}</h2>
+              <Link to = {`/campuses/${student.CampusId}`}><h2>{student.Campus.name}</h2></Link>
             </div>
+            
           ) : (
             <h1>Not enrolled in a campus</h1>
           )}
