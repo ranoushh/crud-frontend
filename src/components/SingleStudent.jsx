@@ -8,6 +8,7 @@ const SingleStudent = (props) => {
   const [student, setStudent] = useState(undefined);
   const { id } = useParams();
 
+  console.log("id = ", id);
   useEffect(() => {
     const fetchStudent = async () => {
       try {
