@@ -60,14 +60,16 @@ export default function Campuses() {
                   <Link to={`/campuses/${campus.id}`}>
                     <h4 style={{ fontFamily: "georgia,garamond,serif" }}>
                       {campus.name}
-                      <button
+                      
+                    </h4>{" "}
+                  </Link>
+
+                  <button
                         onClick={() => deleteCampus(campus.id)}
                         id="delete"
                       >
                         x
                       </button>
-                    </h4>{" "}
-                  </Link>
                   {campus.address}
                   <img
                     style={{ width: 350, height: 300 }}

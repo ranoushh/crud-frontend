@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import campusesActionTypes from "./campuses.type";
+import { useNavigate } from "react-router-dom";
 
 //action creator
 export const fetchAllCampuses = (payload) => ({
@@ -54,6 +55,15 @@ export const addNewCampusThunk = ({ name, address, imageUrl, description }) => {
       );
       console.log(response);
       dispatch(addNewCampus(response.data));
+      // navigate(`/campuses/${newCampus.id}`);
+    //   const navigate = useNavigate();
+    //   const navigateDelay = () =>
+    //   setTimeout(() => {
+    //     navigate(`/campuses/${response.data.id}`);
+    //   }, 1000); // delay by 0.25 sec, so that the user don't get desperate
+
+    // navigateDelay();
+
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +95,7 @@ export const editCampusThunk = (updateCampus) => {
       console.log(response.data);
       console.log("Update Completed");
       dispatch(editCampus(response.data));
+
     } catch (error) {
       console.error(error);
     }

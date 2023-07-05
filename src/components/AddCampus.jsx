@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {addNewCampusThunk} from "../redux/campuses/campuses.action"
+import { useNavigate } from "react-router-dom";
 
 function AddCampus (){
     const [newCampus, setNewCampus] = useState({
@@ -12,6 +13,7 @@ function AddCampus (){
     });
     const allCampuses = useSelector((newCampus) => newCampus.campuses.allCampuses);
     const dispatch = useDispatch();
+
 
     // //clear form - didnt work
     // function clear(){
@@ -42,6 +44,9 @@ function AddCampus (){
             address: "",
             description: ""
         });
+        
+
+
       }
     // function handleSubmit(event) {
     //     console.log(newCampus);
@@ -101,10 +106,11 @@ function AddCampus (){
             </form>
       
         <p></p>
-
+        {/* <Link to= {`/campuses/${newCampus.id}`}> */}
             <button onClick={handleSubmit} id="submit">
                 Submit
             </button>
+        {/* </Link> */}
         </div>
     )
 };
