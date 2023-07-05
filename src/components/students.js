@@ -53,6 +53,19 @@ export default function Students() {
         <ul>
           {allStudents.map((student, index) => (
             <li key={index}>
+
+        
+        
+        
+        
+        
+              <p>
+              <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}  
+              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
+              <Link to={`/students/editStudent/${student.id}`}>
+                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link> </h4> 
+              </p>
+
               <div>
                 <StudentCard
                   imageUrl={student.imageurl}
@@ -71,6 +84,7 @@ export default function Students() {
                   Edit Student{" "}
                 </button>
               </div>
+
             </li>
           ))}
         </ul>
