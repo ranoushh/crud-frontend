@@ -54,19 +54,7 @@ export default function Students() {
           {allStudents.map((student, index) => (
             <li key={index}>
 
-        
-        
-        
-        
-        
-              <p>
-              <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}  
-              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
-              <Link to={`/students/editStudent/${student.id}`}>
-                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link> </h4> 
-              </p>
-
-              <div>
+            <div>
                 <StudentCard
                   imageUrl={student.imageurl}
                   firstName={student.firstname}
@@ -74,16 +62,13 @@ export default function Students() {
                   studentId={student.id}
                 />
               </div>
-              <div className="button-container">
-                <button onClick={() => deleteStudent(student.id)} id="delete">
-                  {" "}
-                  X{" "}
-                </button>
-                <button onClick={() => editStudent(student)} id="edit">
-                  {" "}
-                  Edit Student{" "}
-                </button>
-              </div>
+              <p>
+              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
+              <Link to={`/students/editStudent/${student.id}`}>
+                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link> 
+              </p>
+
+              
 
             </li>
           ))}
