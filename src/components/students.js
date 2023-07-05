@@ -64,8 +64,8 @@ export default function Students() {
               </div>
               <p>
               <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
-              <Link to={`/students/editStudent/${student.id}`}>
-                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link> 
+              {/* <Link to={`/students/editStudent/${student.id}`}>
+                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link>  */}
               </p>
 
               

@@ -48,7 +48,7 @@ useEffect(() => {
     //creates a load delay so frontend will display updated info from db
     const navigateDelay = () =>
       setTimeout(() => {
-        navigate(`/student/${currentStudent.id}`);
+        navigate(`/students/${currentStudent.id}`);
       }, 250); // delay by 0.25 sec, so that the user don't get desperate
 
     navigateDelay();
