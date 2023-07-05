@@ -82,13 +82,15 @@ export const deleteStudentThunk = (id) => {
 };
 
 //???? DOES UPDATEINPUT NEED TO BE DESTRUCTURED??
-export const editStudentThunk = (id, updateInput) => {
+export const editStudentThunk = (updateInput) => {
   return async (dispatch) => {
   try {
           const response = await axios.put(
-             `http://localhost:8080/api/student/updateStudent/${id}`, updateInput
+             `http://localhost:8080/api/student/updateStudent/${updateInput.id}`,
+              updateInput
           );
           console.log(response.data);
+          console.log("Update Completed");
           dispatch(editStudent(response.data));
        } catch (error) {
           console.error(error);

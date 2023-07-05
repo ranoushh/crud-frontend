@@ -43,7 +43,8 @@ export default function Students() {
               <p>
               <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}  
               <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
-              <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </h4>
+              <Link to={`/students/editStudent/${student.id}`}>
+                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link> </h4> 
               </p>
             </li>
           ))}

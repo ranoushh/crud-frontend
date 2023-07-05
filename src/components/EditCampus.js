@@ -5,7 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const EditCampus = ({ campus }) => {
+const EditCampus = () => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
   // const [updatedCampus, setUpdatedCampus] = useState([]);
   const { id } = useParams();
