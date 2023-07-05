@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { deleteCampusThunk } from "../redux/campuses/campuses.action";
+import { Link } from "react-router-dom";
 
 const CampusView = (props) => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
@@ -37,6 +39,13 @@ const CampusView = (props) => {
     });
   };
 
+  const dispatch = useDispatch();
+
+  function deleteCampus(id) {
+    console.log("button");
+    dispatch(deleteCampusThunk(id));
+  }
+
   return (
     <div>
       {currentCampus ? (
@@ -45,13 +54,17 @@ const CampusView = (props) => {
             <section>
               <img src={currentCampus.imageurl} alt={currentCampus.name} />
               <article>
-                <h1>
-                  {currentCampus.name} <span>{currentCampus.id}</span>{" "}
-                </h1>
+                <h1>{currentCampus.name}</h1>
                 <p>{currentCampus.description}</p>
               </article>
             </section>
             <address>{currentCampus.address}</address>
+            <button onClick={() => deleteCampus(currentCampus.id)} id="delete">
+              x
+            </button>
+            <Link to={`/campuses/editcampus/${currentCampus.id}`}>
+              <button> Edit Campus</button>
+            </Link>
           </div>
           <div>
             <div>

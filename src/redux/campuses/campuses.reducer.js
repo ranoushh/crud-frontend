@@ -18,6 +18,10 @@ const campusReducer = (state=Initial_State, action) => {
         case campusesActionTypes.delete_campus:
             return {...state,
                 allCampuses: state.allCampuses.filter(allCampuses => allCampuses.id !== action.payload)};
+        case campusesActionTypes.edit_campus:
+            return {...state,
+                allCampuses: state.allCampuses.map((campus) => campus.id===action.payload.id ? action.payload : campus)
+            };
         default:
             return state;
     }

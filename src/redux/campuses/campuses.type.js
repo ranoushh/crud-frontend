@@ -4,7 +4,8 @@
 const campusesActionTypes ={
     fetch_all_campuses: "FETCH ALL CAMPUSES",
     add_new_campus: "ADD NEW CAMPUS",
-    delete_campus: "DELETE CAMPUS"
+    delete_campus: "DELETE CAMPUS",
+    edit_campus: "EDIT CAMPUS"
 };
 
 export default campusesActionTypes;
