@@ -32,7 +32,9 @@ const CampusView = (props) => {
           <div>
             <img src={student.imageurl} alt={student.firstname} />
           </div>
-          <h4>{student.firstname + " " + student.lastname}</h4>
+          <Link to={`/students/${student.id}`}>
+            <h4>{student.firstname + " " + student.lastname}</h4>
+          </Link>
           <h5>{currentCampus.name}</h5>
         </div>
       );
@@ -69,7 +71,9 @@ const CampusView = (props) => {
           <div>
             <div>
               <h1>Students on Campus</h1>
-              <button>Add a Student</button>
+              <Link to={`/addStudents`}>
+                <button>Add a Student</button>
+              </Link>
             </div>
             {currentCampus.Students !== 0 ? (
               <div>{renderAllStudent()}</div>
