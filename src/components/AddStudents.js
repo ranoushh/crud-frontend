@@ -31,15 +31,28 @@ function AddStudents() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(state);
+    let submitObj = {};
 
-    const submitObj = {
-      firstname: state.firstname,
-      lastname: state.lastname,
-      email: state.email,
-      imageurl: state.imageurl,
-      gpa: state.gpa,
-      CampusId: state.CampusId,
-    };
+    if (state.imageurl !== "") {
+      submitObj = {
+        firstname: state.firstname,
+        lastname: state.lastname,
+        email: state.email,
+        imageurl: state.imageurl,
+        gpa: state.gpa,
+        CampusId: state.CampusId,
+      };
+    } else {
+      submitObj = {
+        firstname: state.firstname,
+        lastname: state.lastname,
+        email: state.email,
+        imageurl: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+        gpa: state.gpa,
+        CampusId: state.CampusId,
+      };
+    }
+
     console.log("my obj is:", submitObj);
     dispatch(addNewStudentThunk(submitObj));
 
@@ -49,16 +62,15 @@ function AddStudents() {
       email: "",
       imageurl: "",
       gpa: 0.0,
-      CampusId: null
-  });
-
+      CampusId: null,
+    });
   }
-
- 
 
   return (
     <div>
-      <h1 style = {{fontFamily:'georgia,garamond,serif'}}>Add a New Student!</h1>
+      <h1 style={{ fontFamily: "georgia,garamond,serif" }}>
+        Add a New Student!
+      </h1>
       <form>
         <label>
           First Name:{" "}
