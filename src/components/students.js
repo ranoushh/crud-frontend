@@ -13,7 +13,6 @@ export default function Students() {
   const allStudents = useSelector((state) => state.students.allStudents);
   const dispatch = useDispatch();
 
-  
   const fetchAllStudents = () => {
     console.log("RUNNING DISPATCH FROM fetchAllStudents");
     return dispatch(fetchAllStudentsThunk());
@@ -52,11 +51,23 @@ export default function Students() {
       </Link>
 
       {allStudents.length > 0 ? (
-        <ul>
+        <ul
+          className="list-students"
+          style={{
+            listStyle: "none",
+          }}
+        >
           {allStudents.map((student, index) => (
-            <li key={index}>
-
-            <div>
+            <li
+              key={index}
+              style={{
+                display: "inline-block",
+                marginRight: "70px",
+                listStyle: "none",
+              }}
+              className="list-students"
+            >
+              <div>
                 <StudentCard
                   imageUrl={student.imageurl}
                   firstName={student.firstname}
@@ -65,13 +76,13 @@ export default function Students() {
                 />
               </div>
               <p>
-              <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
-              {/* <Link to={`/students/editStudent/${student.id}`}>
+                <button onClick={() => deleteStudent(student.id)} id="delete">
+                  {" "}
+                  X{" "}
+                </button>
+                {/* <Link to={`/students/editStudent/${student.id}`}>
                 <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link>  */}
               </p>
-
-              
-
             </li>
           ))}
         </ul>

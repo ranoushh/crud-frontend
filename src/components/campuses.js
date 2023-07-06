@@ -6,6 +6,7 @@ import {
 } from "../redux/campuses/campuses.action";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CampusCard from "./CampusCard";
 
 export default function Campuses() {
   //need our allCampuses array.
@@ -56,26 +57,14 @@ export default function Campuses() {
                 key={campus.id}
                 style={{ display: "inline-block", marginRight: "70px" }}
               >
-                <p>
-                  <Link to={`/campuses/${campus.id}`}>
-                    <h4 style={{ fontFamily: "georgia,garamond,serif" }}>
-                      {campus.name}
-                      
-                    </h4>{" "}
-                  </Link>
-
-                  <button
-                        onClick={() => deleteCampus(campus.id)}
-                        id="delete"
-                      >
-                        x
-                      </button>
-                  {campus.address}
-                  <img
-                    style={{ width: 350, height: 300 }}
-                    src={campus.imageurl}
-                  ></img>
-                </p>
+                <button onClick={() => deleteCampus(campus.id)} id="delete">
+                  x
+                </button>
+                <CampusCard
+                  campusId={campus.id}
+                  campusName={campus.name}
+                  imageUrl={campus.imageurl}
+                />
               </li>
             ))}
           </ul>
