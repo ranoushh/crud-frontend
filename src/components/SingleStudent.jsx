@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { editStudentThunk } from "../redux/students/students.action";
+import { editStudentThunk, deleteStudentThunk } from "../redux/students/students.action";
 import { useDispatch } from "react-redux";
 
 const SingleStudent = (props) => {
@@ -33,6 +33,11 @@ const SingleStudent = (props) => {
     dispatch(editStudentThunk(student));
   }
 
+  function deleteStudent(id) {
+    console.log("button");
+    dispatch(deleteStudentThunk(id));
+  }
+
   return (
     <div>
       {student ? (
@@ -48,6 +53,11 @@ const SingleStudent = (props) => {
           <Link to={`/students/editStudent/${student.id}`}>
             <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> 
           </Link>
+          <Link to={`/students`}>
+          <button onClick={() => deleteStudent(student.id)} id="delete">
+              X
+            </button>
+            </Link>
           {student.CampusId !== null ? (
             <div>
               <img

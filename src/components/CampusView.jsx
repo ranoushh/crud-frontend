@@ -81,10 +81,13 @@ console.log(currentCampus)
                 <p>{currentCampus.description}</p>
               </article>
             </section>
+            <br />
             <address>{currentCampus.address}</address>
+            <Link to={`/campuses`}>
             <button onClick={() => deleteCampus(currentCampus.id)} id="delete">
-              x
+              X
             </button>
+            </Link>
             <Link to={`/campuses/editcampus/${currentCampus.id}`}>
               <button> Edit Campus</button>
             </Link>
