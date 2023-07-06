@@ -49,16 +49,22 @@ const EditCampus = () => {
     console.log(currentCampus);
   };
 
-  function handleSelect(student, e){
-    console.log("student select reached");
-    student={
-      ...student,
-      CampusId: e.target.value,
-    };
 
-    dispatch(editStudentThunk(student))
+  //handleSelect takes studentId(e.target.value) and we want to go through our array and find the student with this id,
+  //then we set the campusId field for that student = to the campus we are editing 
+  //send it to our thunk 
+  function handleSelect(studentId) {
+    console.log("student select reached");
+    const updatedStudent = {
+      ...allStudents.find((student) => student.id === parseInt(studentId)),
+      CampusId: currentCampus.id,
+    };
+  
+    dispatch(editStudentThunk(updatedStudent));
     console.log(currentCampus);
-  };
+  }
+  
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -143,7 +149,18 @@ const EditCampus = () => {
           </label>
         <br></br>
         <div>
-          <select name= "Select Student" id ="selectStudent">
+          {/* e.target.value is our selected student's id: we pass it to handleSelect*/}
+        <select id="selectStudent" onChange={(e) => handleSelect(e.target.value)}>
+          <option value="">Select Student</option>
+          {allStudents.map((student) => (
+            <option value={student.id} key={student.id}>
+              {student.firstname + " " + student.lastname}
+            </option>
+          ))}
+        </select>
+
+
+          {/* <select name= "Select Student" id ="selectStudent">
 
             <option value= "">Select Student</option>
             {allStudents.map((student) => (
@@ -153,7 +170,7 @@ const EditCampus = () => {
             ))};
 
 
-          </select>
+          </select> */}
           
         </div>
           <br></br>
