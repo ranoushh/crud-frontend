@@ -78,6 +78,12 @@ const EditStudent = () => {
 
   return (
     <div>
+      <h3>
+        To proceed, please ensure you have entered a valid first name, last
+        name, and email address.
+        <br />
+        These fields are essential for us to assist you.
+      </h3>
       {currentStudent ? (
         <form onSubmit={handleSubmit}>
           <label>
@@ -87,6 +93,8 @@ const EditStudent = () => {
               name="firstname"
               value={currentStudent.firstname}
               onChange={handleChange}
+              required
+              pattern="[A-Za-z ]+"
             />
           </label>
           <br />
@@ -97,41 +105,50 @@ const EditStudent = () => {
               name="lastname"
               value={currentStudent.lastname}
               onChange={handleChange}
+              required
+              pattern="[A-Za-z ]+"
             />
           </label>
           <br />
           <label>
             E-Mail:
             <input
-              type="text"
+              type="email"
               name="email"
               value={currentStudent.email}
               onChange={handleChange}
+              required
             />
           </label>
           <br />
           <label>
             Image URL:
             <input
-              type="text"
+              type="url"
               name="imageurl"
               value={currentStudent.imageurl}
               onChange={handleChange}
+              placeholder="Enter a Valid Image URL"
             />
           </label>
           <br />
           <label>
             GPA:
             <input
-              type="text"
+              type="number"
               name="gpa"
               value={currentStudent.gpa}
               onChange={handleChange}
+              min={0}
+              max={4}
+              step={0.1}
             />
           </label>
           <br />
           <select onChange={handleSelect}>
-            <option value={currentStudent.Campus.name}>{currentStudent.Campus.name}</option>
+            <option value={currentStudent.Campus.name}>
+              {currentStudent.Campus.name}
+            </option>
             {allCampuses.map((campus) => (
               <option value={campus.id} key={campus.id}>
                 {campus.name}

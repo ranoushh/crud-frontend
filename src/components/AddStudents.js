@@ -94,7 +94,13 @@ function AddStudents() {
       <h1 style={{ fontFamily: "georgia,garamond,serif" }}>
         Add a New Student!
       </h1>
-      <form>
+      <p />
+      <h3>
+      To proceed, please ensure you have entered a valid first name, last name, and email address.
+      <br/>
+       These fields are essential for us to assist you.
+      </h3>
+      <form onSubmit={handleSubmit}>
         <label>
           First Name:{" "}
           <input
@@ -103,6 +109,8 @@ function AddStudents() {
             value={state.firstname}
             onChange={handleChange}
             placeholder="Enter First Name"
+            required
+            pattern="[A-Za-z ]+" 
           ></input>
         </label>
         <br />
@@ -114,28 +122,31 @@ function AddStudents() {
             value={state.lastname}
             onChange={handleChange}
             placeholder="Enter Last Name"
+            required
+            pattern="[A-Za-z ]+" 
           ></input>
         </label>
         <br />
         <label>
           E-Mail:{" "}
           <input
-            type="text"
+            type="email"
             name="email"
             value={state.email}
             onChange={handleChange}
             placeholder="Enter E-Mail Address"
+            required
           ></input>
         </label>
         <br />
         <label>
           Image URL:{" "}
           <input
-            type="text"
+            type="url"
             name="imageurl"
             value={state.imageurl}
             onChange={handleChange}
-            placeholder="Enter Image URL"
+            placeholder="Enter a Valid Image URL"
           ></input>
         </label>
         <br />
@@ -162,10 +173,11 @@ function AddStudents() {
           ))}
         </select>
         <br />
-      </form>
-      <button type="submit" id="submit" onClick={handleSubmit}>
+        <button type="submit" id="submit" >
         Submit
       </button>
+      </form>
+     
     </div>
   );
 }

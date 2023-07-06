@@ -41,7 +41,7 @@ export const fetchAllCampusesThunk = () => {
   };
 };
 
-export const addNewCampusThunk = ({ name, address, imageUrl, description }) => {
+export const addNewCampusThunk = ({ name, address, imageurl, description }) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -49,7 +49,7 @@ export const addNewCampusThunk = ({ name, address, imageUrl, description }) => {
         {
           name: name,
           address: address,
-          imageUrl: imageUrl,
+          imageurl: imageurl,
           description: description,
         }
       );
