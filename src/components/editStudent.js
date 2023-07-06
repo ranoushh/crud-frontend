@@ -2,22 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editStudentThunk } from "../redux/students/students.action";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const EditStudent = () => {
-    const [currentStudent, setCurrentStudent] = useState(undefined);
-    const { id } = useParams();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-//   const [formData, setFormData] = useState({
-//     firstname: student.firstname,
-//     lastname: student.lastname,
-//     email: student.email,
-//     gpa: student.gpa,
-//   });
+  const [currentStudent, setCurrentStudent] = useState(undefined);
+  const allCampuses = useSelector((state) => state.campuses.allCampuses);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //   const [formData, setFormData] = useState({
+  //     firstname: student.firstname,
+  //     lastname: student.lastname,
+  //     email: student.email,
+  //     gpa: student.gpa,
+  //   });
 
-useEffect(() => {
+  useEffect(() => {
     const fetchStudent = async () => {
       try {
         const response = await axios.get(
@@ -30,7 +32,7 @@ useEffect(() => {
       }
     };
 
-    fetchStudent(); 
+    fetchStudent();
   }, [id]);
 
   const handleChange = (e) => {
@@ -52,66 +54,96 @@ useEffect(() => {
       }, 250); // delay by 0.25 sec, so that the user don't get desperate
 
     navigateDelay();
-
   };
+
+  const fetchAllCampuses = () => {
+    console.log("RUNNING DISPATCH FROM fetchAllCampuses");
+    return dispatch(fetchAllCampusesThunk());
+  };
+
+  useEffect(() => {
+    console.log("FETCH ALL Campuses FIRING IN USEEFFECT");
+    fetchAllCampuses();
+  }, []);
+
+  function handleSelect(event) {
+    console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
+    setCurrentStudent({
+      ...currentStudent,
+      CampusId: event.target.value,
+    });
+  }
+
+  console.log("THIS IS ALLCAMPUSES", allCampuses);
 
   return (
     <div>
-  {currentStudent?(  <form onSubmit={handleSubmit}>
-      <label>
-        First Name:
-        <input
-          type="text"
-          name="firstname"
-          value={currentStudent.firstname}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input
-          type="text"
-          name="lastname"
-          value={currentStudent.lastname}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        E-Mail:
-        <input
-          type="text"
-          name="email"
-          value={currentStudent.email}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Image URL:
-        <input
-          type="text"
-          name="imageurl"
-          value={currentStudent.imageurl}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        GPA:
-        <input
-          type="text"
-          name="gpa"
-          value={currentStudent.gpa}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>):(
+      {currentStudent ? (
+        <form onSubmit={handleSubmit}>
+          <label>
+            First Name:
+            <input
+              type="text"
+              name="firstname"
+              value={currentStudent.firstname}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Last Name:
+            <input
+              type="text"
+              name="lastname"
+              value={currentStudent.lastname}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            E-Mail:
+            <input
+              type="text"
+              name="email"
+              value={currentStudent.email}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Image URL:
+            <input
+              type="text"
+              name="imageurl"
+              value={currentStudent.imageurl}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            GPA:
+            <input
+              type="text"
+              name="gpa"
+              value={currentStudent.gpa}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <select onChange={handleSelect}>
+            <option value={currentStudent.Campus.name}>{currentStudent.Campus.name}</option>
+            {allCampuses.map((campus) => (
+              <option value={campus.id} key={campus.id}>
+                {campus.name}
+              </option>
+            ))}
+          </select>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
         <div>Loading Campus Data...</div>
-    )}
+      )}
     </div>
   );
 };
