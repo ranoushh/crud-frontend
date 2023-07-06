@@ -11,6 +11,8 @@ function AddCampus() {
     address: "",
     description: "",
   });
+
+  //default image: https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?
   //below is accessing the campuses state in the store and accessing the allCampuses array
   // const allCampuses = useSelector((state) => state.campuses.allCampuses)
   const dispatch = useDispatch();
