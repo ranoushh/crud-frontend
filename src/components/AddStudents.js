@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addNewStudentThunk } from "../redux/students/students.action";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCampusesThunk} from "../redux/campuses/campuses.action";
+import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
 import { fetchAllStudentsThunk } from "../redux/students/students.action";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,6 @@ function AddStudents() {
   const allCampuses = useSelector((state) => state.campuses.allCampuses);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const fetchAllCampuses = () => {
     console.log("RUNNING DISPATCH FROM fetchAllCampuses");
@@ -26,7 +25,7 @@ function AddStudents() {
   useEffect(() => {
     console.log("FETCH ALL STUDENTS FIRING IN USEEFFECT");
     //loads all students from db when the allStudents array is empty upon rendering
-    fetchAllStudents();
+    dispatch(fetchAllStudentsThunk());
   }, []);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ function AddStudents() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(state);
     let submitObj = {};
@@ -89,19 +88,14 @@ function AddStudents() {
         gpa: state.gpa,
         CampusId: state.CampusId,
       };
-      
     }
 
     console.log("my obj is:", submitObj);
-    console.log("HERE" + dispatch(addNewStudentThunk(submitObj)));
+    //Setting student data from the addNewStudentThunk
+    const studentData = await dispatch(addNewStudentThunk(submitObj));
+    console.log("This is student data: ", studentData);
 
-    const navigateDelay = () =>
-      setTimeout(() => {
-        const lastStudent = allStudents[allStudents.length - 1];
-        navigate(`/students/${lastStudent.id}`);
-      }, 250); // delay by 0.25 sec, so that the user don't get desperate
-
-    navigateDelay();
+    navigate(`/students/${studentData.id}`);
 
     setState({
       firstname: "",
@@ -111,8 +105,6 @@ function AddStudents() {
       gpa: 0.0,
       CampusId: null,
     });
-
-    
   }
 
   return (
@@ -122,9 +114,10 @@ function AddStudents() {
       </h1>
       <p />
       <h3>
-      To proceed, please ensure you have entered a valid first name, last name, and email address.
-      <br/>
-       These fields are essential for us to assist you.
+        To proceed, please ensure you have entered a valid first name, last
+        name, and email address.
+        <br />
+        These fields are essential for us to assist you.
       </h3>
       <form onSubmit={handleSubmit}>
         <label>
@@ -136,7 +129,7 @@ function AddStudents() {
             onChange={handleChange}
             placeholder="Enter First Name"
             required
-            pattern="[A-Za-z ]+" 
+            pattern="[A-Za-z ]+"
           ></input>
         </label>
         <br />
@@ -149,7 +142,7 @@ function AddStudents() {
             onChange={handleChange}
             placeholder="Enter Last Name"
             required
-            pattern="[A-Za-z ]+" 
+            pattern="[A-Za-z ]+"
           ></input>
         </label>
         <br />
@@ -199,11 +192,10 @@ function AddStudents() {
           ))}
         </select>
         <br />
-        <button type="submit" id="submit" >
+        <button type="submit" id="submit">
           Submit
         </button>
       </form>
-     
     </div>
   );
 }

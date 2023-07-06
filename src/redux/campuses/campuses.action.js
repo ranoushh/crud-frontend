@@ -55,15 +55,7 @@ export const addNewCampusThunk = ({ name, address, imageurl, description }) => {
       );
       console.log(response);
       dispatch(addNewCampus(response.data));
-      // navigate(`/campuses/${newCampus.id}`);
-    //   const navigate = useNavigate();
-    //   const navigateDelay = () =>
-    //   setTimeout(() => {
-    //     navigate(`/campuses/${response.data.id}`);
-    //   }, 1000); // delay by 0.25 sec, so that the user don't get desperate
-
-    // navigateDelay();
-
+      return response.data;
     } catch (error) {
       console.log(error);
     }
