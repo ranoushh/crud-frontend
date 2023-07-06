@@ -81,7 +81,7 @@ export const deleteStudentThunk = (id) => {
   };
 };
 
-//???? DOES UPDATEINPUT NEED TO BE DESTRUCTURED??
+
 export const editStudentThunk = (updateInput) => {
   return async (dispatch) => {
   try {

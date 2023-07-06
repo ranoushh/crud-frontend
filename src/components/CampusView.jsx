@@ -4,42 +4,63 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { deleteCampusThunk } from "../redux/campuses/campuses.action";
+import { deleteStudentThunk } from "../redux/students/students.action";
 import { Link } from "react-router-dom";
+import { render } from "@testing-library/react";
 
 const CampusView = (props) => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
+  const [students, setStudents] = useState([]);
   const { id } = useParams();
+ 
+console.log(currentCampus)
+
   useEffect(() => {
-    const fetchCampus = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/campus/${id}`
+    fetchCampus();
+  }, []);
+
+  const fetchCampus = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/campus/${id}`
+      );
+      console.log(response);
+      setCurrentCampus(response.data);
+      setStudents(response.data.Students);
+      console.log(response.data.Students)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+   async function deleteStudent(id) {
+    console.log("delete student button reached");
+     await dispatch(deleteStudentThunk(id));
+    await fetchCampus();
+  }
+
+
+
+    const renderAllStudent = () => {
+      return students.map((student) => {
+        return (
+          <div key={student.id}>
+            <div>
+              <img src={student.imageurl} alt={student.firstname} />
+            </div>
+            <Link to={`/students/${student.id}`}>
+              <h4>{student.firstname + " " + student.lastname}</h4>
+            </Link>
+            {/* <Link to={`/campuses/${currentCampus.id}`}> */}
+            <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
+            {/* </Link> */}
+            <h5>{currentCampus.name}</h5>
+          </div>
         );
-        console.log(response);
-        setCurrentCampus(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      });
     };
 
-    fetchCampus();
-  }, [id]);
-
-  const renderAllStudent = () => {
-    return currentCampus.Students.map((student) => {
-      return (
-        <div key={student.id}>
-          <div>
-            <img src={student.imageurl} alt={student.firstname} />
-          </div>
-          <Link to={`/students/${student.id}`}>
-            <h4>{student.firstname + " " + student.lastname}</h4>
-          </Link>
-          <h5>{currentCampus.name}</h5>
-        </div>
-      );
-    });
-  };
+  
 
   const dispatch = useDispatch();
 
@@ -79,7 +100,7 @@ const CampusView = (props) => {
               <div>{renderAllStudent()}</div>
             ) : (
               <div>
-                <p>There is no student currently register on this campus</p>
+                <p>There are no students currently registered on this campus</p>
               </div>
             )}
           </div>
