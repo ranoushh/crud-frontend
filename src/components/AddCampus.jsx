@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewCampusThunk } from "../redux/campuses/campuses.action";
+import { addNewCampusThunk, fetchAllCampuses } from "../redux/campuses/campuses.action";
 import { useNavigate } from "react-router-dom";
+import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
+
 
 function AddCampus() {
+    const allCampuses = useSelector((state) => state.campuses.allCampuses);
   const [newCampus, setNewCampus] = useState({
     campusName: "",
     imageurl: "",
@@ -16,7 +19,18 @@ function AddCampus() {
   //below is accessing the campuses state in the store and accessing the allCampuses array
   // const allCampuses = useSelector((state) => state.campuses.allCampuses)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+
+  const fetchAllCampuses = () => {
+    console.log("RUNNING DISPATCH FROM fetchAllCampuses");
+    return dispatch(fetchAllCampusesThunk());
+  };
+
+  useEffect(() => {
+    console.log("FETCH ALL Campuses FIRING IN USEEFFECT");
+    fetchAllCampuses();
+  }, []);
   // //clear form - didnt work
   // function clear(){
   //     let element = document.getElementById("form");
@@ -47,6 +61,15 @@ function AddCampus() {
       address: "",
       description: "",
     });
+
+
+    const navigateDelay = () =>
+      setTimeout(() => {
+        const lastCampus = allCampuses[allCampuses.length - 1];
+        navigate(`/campuses/${lastCampus.id}`);
+      }, 250); // delay by 0.25 sec, so that the user don't get desperate
+
+    navigateDelay();
   }
   // function handleSubmit(event) {
   //     console.log(newCampus);

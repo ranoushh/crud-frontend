@@ -2,17 +2,32 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addNewStudentThunk } from "../redux/students/students.action";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
+import { fetchAllCampusesThunk} from "../redux/campuses/campuses.action";
+import { fetchAllStudentsThunk } from "../redux/students/students.action";
+import { useNavigate } from "react-router-dom";
 
 function AddStudents() {
   const allStudents = useSelector((state) => state.students.allStudents);
   const allCampuses = useSelector((state) => state.campuses.allCampuses);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const fetchAllCampuses = () => {
     console.log("RUNNING DISPATCH FROM fetchAllCampuses");
     return dispatch(fetchAllCampusesThunk());
   };
+
+  const fetchAllStudents = () => {
+    console.log("RUNNING DISPATCH FROM fetchAllStudents");
+    return dispatch(fetchAllStudentsThunk());
+  };
+
+  useEffect(() => {
+    console.log("FETCH ALL STUDENTS FIRING IN USEEFFECT");
+    //loads all students from db when the allStudents array is empty upon rendering
+    fetchAllStudents();
+  }, []);
 
   useEffect(() => {
     console.log("FETCH ALL Campuses FIRING IN USEEFFECT");
@@ -74,10 +89,19 @@ function AddStudents() {
         gpa: state.gpa,
         CampusId: state.CampusId,
       };
+      
     }
 
     console.log("my obj is:", submitObj);
-    dispatch(addNewStudentThunk(submitObj));
+    console.log("HERE" + dispatch(addNewStudentThunk(submitObj)));
+
+    const navigateDelay = () =>
+      setTimeout(() => {
+        const lastStudent = allStudents[allStudents.length - 1];
+        navigate(`/students/${lastStudent.id}`);
+      }, 250); // delay by 0.25 sec, so that the user don't get desperate
+
+    navigateDelay();
 
     setState({
       firstname: "",
@@ -87,6 +111,8 @@ function AddStudents() {
       gpa: 0.0,
       CampusId: null,
     });
+
+    
   }
 
   return (
@@ -174,8 +200,8 @@ function AddStudents() {
         </select>
         <br />
         <button type="submit" id="submit" >
-        Submit
-      </button>
+          Submit
+        </button>
       </form>
      
     </div>
