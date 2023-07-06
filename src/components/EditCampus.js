@@ -11,6 +11,7 @@ const EditCampus = () => {
   const allStudents = useSelector((state) => state.students.allStudents.filter(allStudents => allStudents.CampusId === null));
   // const filteredStudents = state.allStudents.filter(allStudents => allStudents.CampusId === null);
   const [ID, setID] = useState(0);
+  let updatedStudent = {};
 
   console.log("filtered?" + allStudents);
   // const [updatedCampus, setUpdatedCampus] = useState([]);
@@ -55,12 +56,10 @@ const EditCampus = () => {
   //send it to our thunk 
   function handleSelect(studentId) {
     console.log("student select reached");
-    const updatedStudent = {
+    updatedStudent = {
       ...allStudents.find((student) => student.id === parseInt(studentId)),
       CampusId: currentCampus.id,
     };
-  
-    dispatch(editStudentThunk(updatedStudent));
     console.log(currentCampus);
   }
   
@@ -71,6 +70,7 @@ const EditCampus = () => {
     //prevents refreshing page when data is submitted in the form
     // setUpdatedCampus(formData);
     dispatch(editCampusThunk(currentCampus));
+    dispatch(editStudentThunk(updatedStudent));
 
     //this fucntion below it just, to delay the navigation to the page,
     //so that the update data can preview correcly in the single student view, cause if there is no delay
