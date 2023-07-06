@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editCampusThunk } from "../redux/campuses/campuses.action";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { editStudentThunk, fetchAllStudentsThunk } from "../redux/students/students.action";
 
 const EditCampus = () => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
+  const allStudents = useSelector((state) => state.students.allStudents.filter(allStudents => allStudents.CampusId === null));
+  // const filteredStudents = state.allStudents.filter(allStudents => allStudents.CampusId === null);
+  const [ID, setID] = useState(0);
+
+  console.log("filtered?" + allStudents);
   // const [updatedCampus, setUpdatedCampus] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -41,7 +47,24 @@ const EditCampus = () => {
       [e.target.name]: e.target.value,
     });
     console.log(currentCampus);
+  };
+
+
+  //handleSelect takes studentId(e.target.value) and we want to go through our array and find the student with this id,
+  //then we set the campusId field for that student = to the campus we are editing 
+  //send it to our thunk 
+  function handleSelect(studentId) {
+    console.log("student select reached");
+    const updatedStudent = {
+      ...allStudents.find((student) => student.id === parseInt(studentId)),
+      CampusId: currentCampus.id,
+    };
+  
+    dispatch(editStudentThunk(updatedStudent));
+    console.log(currentCampus);
   }
+  
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -65,6 +88,17 @@ const EditCampus = () => {
   //   console.log("editing campus reached");
   //   dispatch(editCampusThunk(id, updatedCampus));
   // }
+
+  const fetchAllStudents = () => {
+    console.log("RUNNING DISPATCH FROM fetchAllStudents");
+    return dispatch(fetchAllStudentsThunk());
+  };
+
+  useEffect(() => {
+    console.log("FETCH ALL STUDENTS FIRING IN USEEFFECT");
+    //loads all students from db when the allStudents array is empty upon rendering
+    fetchAllStudents();
+  }, []);
 
   return (
     <div>
@@ -113,12 +147,41 @@ const EditCampus = () => {
               onChange={handleChange}
             />
           </label>
+        <br></br>
+        <div>
+          {/* e.target.value is our selected student's id: we pass it to handleSelect*/}
+        <select id="selectStudent" onChange={(e) => handleSelect(e.target.value)}>
+          <option value="">Select Student</option>
+          {allStudents.map((student) => (
+            <option value={student.id} key={student.id}>
+              {student.firstname + " " + student.lastname}
+            </option>
+          ))}
+        </select>
+
+
+          {/* <select name= "Select Student" id ="selectStudent">
+
+            <option value= "">Select Student</option>
+            {allStudents.map((student) => (
+                <option onSelect={handleSelect(student)}value={student.id} key={student.id}>
+                  {student.firstname + " "+ student.lastname};
+                </option>
+            ))};
+
+
+          </select> */}
+          
+        </div>
           <br></br>
           <button type="submit">Submit</button>
+
         </form>
       ) : (
         <div>Loading Campus Data...</div>
       )}
+
+
     </div>
   );
 };

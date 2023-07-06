@@ -12,6 +12,8 @@ export default function Students() {
   //allStudents accesses global state here to fetch all students in the db
   const allStudents = useSelector((state) => state.students.allStudents);
   const dispatch = useDispatch();
+
+  
   const fetchAllStudents = () => {
     console.log("RUNNING DISPATCH FROM fetchAllStudents");
     return dispatch(fetchAllStudentsThunk());
