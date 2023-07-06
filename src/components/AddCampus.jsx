@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function AddCampus() {
   const [newCampus, setNewCampus] = useState({
     campusName: "",
-    imageUrl: "",
+    imageurl: "",
     address: "",
     description: "",
   });
@@ -23,6 +23,7 @@ function AddCampus() {
 
   function handleChange(event) {
     setNewCampus({ ...newCampus, [event.target.name]: event.target.value });
+    console.log(newCampus);
   }
 
   function handleSubmit(event) {
@@ -32,7 +33,7 @@ function AddCampus() {
     const submitObj = {
       name: newCampus.campusName,
       address: newCampus.address,
-      imageurl: newCampus.imageUrl,
+      imageurl: newCampus.imageurl,
       description: newCampus.description,
     };
     console.log("my obj is:", submitObj);
@@ -40,7 +41,7 @@ function AddCampus() {
 
     setNewCampus({
       campusName: "",
-      imageUrl: "",
+      imageurl: "",
       address: "",
       description: "",
     });
@@ -69,7 +70,13 @@ function AddCampus() {
   return (
     <div>
       <h1 style={{ fontFamily: "georgia,garamond,serif" }}>Add Campus:</h1>
-      <form id="form">
+      
+      <h3>
+      To proceed, please ensure you have entered a valid name and address.
+      <br/>
+       These fields are essential for us to assist you.
+      </h3>
+      <form id="form" onSubmit={handleSubmit}>
         <p></p>
         College Name:{" "}
         <input
@@ -79,16 +86,18 @@ function AddCampus() {
           value={newCampus.campusName}
           onChange={handleChange}
           placeholder="Enter Campus Name"
+          required
+          pattern="[A-Za-z ]+" 
         />
         <p></p>
-        Image Url:{" "}
+        Image URL:{" "}
         <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={newCampus.imageUrl}
+          type="url"
+          id="imageurl"
+          name="imageurl"
+          value={newCampus.imageurl}
           onChange={handleChange}
-          placeholder="Enter URL"
+          placeholder="Enter a Valid Image URL"
         />
         <p></p>
         Address:{" "}
@@ -99,6 +108,7 @@ function AddCampus() {
           value={newCampus.address}
           onChange={handleChange}
           placeholder="Enter Address"
+          required
         />
         <p></p>
         Description:{" "}
@@ -111,13 +121,14 @@ function AddCampus() {
           placeholder="Enter description"
         />
         <p></p>
+        <button id="submit">
+        Submit
+      </button>
       </form>
 
       <p></p>
       {/* <Link to= {`/campuses/${newCampus.id}`}> */}
-      <button onClick={handleSubmit} id="submit">
-        Submit
-      </button>
+      
       {/* </Link> */}
     </div>
   );
