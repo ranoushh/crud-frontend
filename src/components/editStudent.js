@@ -66,13 +66,23 @@ const EditStudent = () => {
     fetchAllCampuses();
   }, []);
 
-  function handleSelect(event) {
+  // function handleSelect(event) {
+  //   console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
+  //   setCurrentStudent({
+  //     ...currentStudent,
+  //     CampusId: event.target.value,
+  //   });
+  //   console.log(currentStudent);
+  // }
+
+  const handleSelect = (event) => {
     console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
     setCurrentStudent({
       ...currentStudent,
       CampusId: event.target.value,
     });
-  }
+    console.log(currentStudent);
+  };
 
   console.log("THIS IS ALLCAMPUSES", allCampuses);
 
@@ -145,16 +155,30 @@ const EditStudent = () => {
             />
           </label>
           <br />
-          <select onChange={handleSelect}>
-            <option value={currentStudent.Campus.name}>
-              {currentStudent.Campus.name}
-            </option>
-            {allCampuses.map((campus) => (
-              <option value={campus.id} key={campus.id}>
-                {campus.name}
+          {console.log(currentStudent)}
+          {console.log(allCampuses)}
+
+          {currentStudent.Campus ? (
+            <select onChange={handleSelect}>
+              <option value={currentStudent.Campus.name}>
+                {currentStudent.Campus.name}
               </option>
-            ))}
-          </select>
+              {allCampuses.map((campus) => (
+                <option value={campus.id} key={campus.id}>
+                  {campus.name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <select onChange={handleSelect}>
+              <option value="">Select a campus</option>
+              {allCampuses.map((campus) => (
+                <option value={campus.id} key={campus.id}>
+                  {campus.name}
+                </option>
+              ))}
+            </select>
+          )}
           <br />
           <button type="submit">Submit</button>
         </form>
