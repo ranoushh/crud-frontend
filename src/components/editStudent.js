@@ -94,7 +94,7 @@ const EditStudent = () => {
               value={currentStudent.firstname}
               onChange={handleChange}
               required
-              pattern="[A-Za-z]+"
+              pattern="[A-Za-z ]+"
             />
           </label>
           <br />
@@ -106,7 +106,7 @@ const EditStudent = () => {
               value={currentStudent.lastname}
               onChange={handleChange}
               required
-              pattern="[A-Za-z]+"
+              pattern="[A-Za-z ]+"
             />
           </label>
           <br />

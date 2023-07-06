@@ -77,16 +77,19 @@ const EditCampus = () => {
               name="name"
               value={currentCampus.name}
               onChange={handleChange}
+              pattern="[A-Za-z ]+" 
+              required
             />
           </label>
           <br></br>
           <label>
             Image URL:
             <input
-              type="text"
+              type="url"
               name="imageurl"
               value={currentCampus.imageurl}
               onChange={handleChange}
+              placeholder="Enter a Valid Image URL"
             />
           </label>
           <br></br>
@@ -97,6 +100,7 @@ const EditCampus = () => {
               name="address"
               value={currentCampus.address}
               onChange={handleChange}
+              required
             />
           </label>
           <br></br>
