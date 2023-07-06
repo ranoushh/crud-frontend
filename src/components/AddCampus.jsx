@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewCampusThunk, fetchAllCampuses } from "../redux/campuses/campuses.action";
+import {
+  addNewCampusThunk,
+  fetchAllCampuses,
+} from "../redux/campuses/campuses.action";
 import { useNavigate } from "react-router-dom";
 import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
 
-
 function AddCampus() {
-    const allCampuses = useSelector((state) => state.campuses.allCampuses);
+  const allCampuses = useSelector((state) => state.campuses.allCampuses);
   const [newCampus, setNewCampus] = useState({
     campusName: "",
     imageurl: "",
@@ -15,12 +17,10 @@ function AddCampus() {
     description: "",
   });
 
-  //default image: https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?
   //below is accessing the campuses state in the store and accessing the allCampuses array
   // const allCampuses = useSelector((state) => state.campuses.allCampuses)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const fetchAllCampuses = () => {
     console.log("RUNNING DISPATCH FROM fetchAllCampuses");
@@ -42,18 +42,31 @@ function AddCampus() {
     console.log(newCampus);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(newCampus);
+    let submitObj = {};
 
-    const submitObj = {
-      name: newCampus.campusName,
-      address: newCampus.address,
-      imageurl: newCampus.imageurl,
-      description: newCampus.description,
-    };
+    if (newCampus.imageurl !== "") {
+      submitObj = {
+        name: newCampus.campusName,
+        address: newCampus.address,
+        imageurl: newCampus.imageurl,
+        description: newCampus.description,
+      };
+    } else {
+      submitObj = {
+        name: newCampus.campusName,
+        address: newCampus.address,
+        imageurl:
+          "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+        description: newCampus.description,
+      };
+    }
     console.log("my obj is:", submitObj);
-    dispatch(addNewCampusThunk(submitObj));
+
+    const campusData = await dispatch(addNewCampusThunk(submitObj));
+    navigate(`/campuses/${campusData.id}`);
 
     setNewCampus({
       campusName: "",
@@ -61,15 +74,6 @@ function AddCampus() {
       address: "",
       description: "",
     });
-
-
-    const navigateDelay = () =>
-      setTimeout(() => {
-        const lastCampus = allCampuses[allCampuses.length - 1];
-        navigate(`/campuses/${lastCampus.id}`);
-      }, 250); // delay by 0.25 sec, so that the user don't get desperate
-
-    navigateDelay();
   }
   // function handleSubmit(event) {
   //     console.log(newCampus);
@@ -95,11 +99,11 @@ function AddCampus() {
   return (
     <div>
       <h1 style={{ fontFamily: "georgia,garamond,serif" }}>Add Campus:</h1>
-      
+
       <h3>
-      To proceed, please ensure you have entered a valid name and address.
-      <br/>
-       These fields are essential for us to assist you.
+        To proceed, please ensure you have entered a valid name and address.
+        <br />
+        These fields are essential for us to assist you.
       </h3>
       <form id="form" onSubmit={handleSubmit}>
         <p></p>
@@ -112,7 +116,7 @@ function AddCampus() {
           onChange={handleChange}
           placeholder="Enter Campus Name"
           required
-          pattern="[A-Za-z ]+" 
+          pattern="[A-Za-z ]+"
         />
         <p></p>
         Image URL:{" "}
@@ -146,14 +150,12 @@ function AddCampus() {
           placeholder="Enter description"
         />
         <p></p>
-        <button id="submit">
-        Submit
-      </button>
+        <button id="submit">Submit</button>
       </form>
 
       <p></p>
       {/* <Link to= {`/campuses/${newCampus.id}`}> */}
-      
+
       {/* </Link> */}
     </div>
   );

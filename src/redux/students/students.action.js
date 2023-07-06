@@ -15,12 +15,12 @@ export const addNewStudent = (payload) => ({
 
 export const deleteStudent = (id) => ({
   type: studentsActionTypes.delete_a_student,
-  payload: id
+  payload: id,
 });
 
 export const editStudent = (updateInput) => ({
   type: studentsActionTypes.edit_a_student,
-  payload: updateInput
+  payload: updateInput,
 });
 
 // Thunks
@@ -60,6 +60,8 @@ export const addNewStudentThunk = ({
       );
       console.log(response);
       dispatch(addNewStudent(response.data));
+      //Returning response.data to pass student data to components
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -68,32 +70,31 @@ export const addNewStudentThunk = ({
 
 export const deleteStudentThunk = (id) => {
   return async (dispatch) => {
-  try {
-          const response = await axios({
-             url: `http://localhost:8080/api/student/removeStudent/${id}`, 
-             method: 'delete'
-          });
-          console.log(id);
-          dispatch(deleteStudent(id));
-       } catch (error) {
-          console.error(error);
-      };
+    try {
+      const response = await axios({
+        url: `http://localhost:8080/api/student/removeStudent/${id}`,
+        method: "delete",
+      });
+      console.log(id);
+      dispatch(deleteStudent(id));
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
-
 export const editStudentThunk = (updateInput) => {
   return async (dispatch) => {
-  try {
-          const response = await axios.put(
-             `http://localhost:8080/api/student/updateStudent/${updateInput.id}`,
-              updateInput
-          );
-          console.log(response.data);
-          console.log("Update Completed");
-          dispatch(editStudent(response.data));
-       } catch (error) {
-          console.error(error);
-      };
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/student/updateStudent/${updateInput.id}`,
+        updateInput
+      );
+      console.log(response.data);
+      console.log("Update Completed");
+      dispatch(editStudent(response.data));
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
