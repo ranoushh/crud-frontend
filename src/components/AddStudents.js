@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addNewStudentThunk } from "../redux/students/students.action";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCampusesThunk } from "../redux/campuses/campuses.action";
 
 function AddStudents() {
   const allStudents = useSelector((state) => state.students.allStudents);
+  const allCampuses = useSelector((state) => state.campuses.allCampuses);
   const dispatch = useDispatch();
+
+  const fetchAllCampuses = () => {
+    console.log("RUNNING DISPATCH FROM fetchAllCampuses");
+    return dispatch(fetchAllCampusesThunk());
+  };
+
+  useEffect(() => {
+    console.log("FETCH ALL Campuses FIRING IN USEEFFECT");
+    fetchAllCampuses();
+  }, []);
+
+  console.log("THIS IS ALLCAMPUSES", allCampuses);
 
   //setting consts within state
   const [state, setState] = useState({
@@ -28,6 +42,14 @@ function AddStudents() {
     });
   }
 
+  function handleSelect(event) {
+    console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
+    setState({
+      ...state,
+      CampusId: event.target.value,
+    });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log(state);
@@ -47,7 +69,8 @@ function AddStudents() {
         firstname: state.firstname,
         lastname: state.lastname,
         email: state.email,
-        imageurl: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+        imageurl:
+          "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
         gpa: state.gpa,
         CampusId: state.CampusId,
       };
@@ -130,19 +153,15 @@ function AddStudents() {
           ></input>
         </label>
         <br />
-        {/* <label>
-          Campus ID:{" "}
-          <input
-            type="number"
-            name="CampusId"
-            min={1}
-            step="01"
-            value={state.CampusId}
-            onChange={handleChange}
-            placeholder="Enter Campus ID"
-          ></input>
-        </label> 
-        <br />*/}
+        <select onChange={handleSelect}>
+          <option value="">Select a campus</option>
+          {allCampuses.map((campus) => (
+            <option value={campus.id} key={campus.id}>
+              {campus.name}
+            </option>
+          ))}
+        </select>
+        <br />
       </form>
       <button type="submit" id="submit" onClick={handleSubmit}>
         Submit
