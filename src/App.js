@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import AddCampus from "./components/AddCampus";
 import CampusView from "./components/CampusView";
 import EditCampus from "./components/EditCampus";
-import EditStudent from "./components/editStudent";
+import EditStudent from "./components/EditStudent";
 import SingleStudent from "./components/SingleStudent";
 
 function App() {
