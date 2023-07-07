@@ -4,6 +4,7 @@ import Campuses from "./components/campuses";
 import Students from "./components/students";
 import AddStudents from "./components/AddStudents";
 import Home from "./components/Home";
+import Header from "./components/Header";
 import AddCampus from "./components/AddCampus";
 import CampusView from "./components/CampusView";
 import EditCampus from "./components/EditCampus";
@@ -15,7 +16,8 @@ function App() {
     <Router>
       <div className="App">
         {/* Navigation */}
-        <nav>
+        <Header />
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -27,7 +29,7 @@ function App() {
               <Link to="/campuses">Campuses</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* Routes */}
         <Routes>
