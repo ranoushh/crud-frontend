@@ -84,7 +84,7 @@ function AddStudents() {
         lastname: state.lastname,
         email: state.email,
         imageurl:
-          "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+          "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png", //default image
         gpa: state.gpa,
         CampusId: state.CampusId,
       };
@@ -101,7 +101,8 @@ function AddStudents() {
       firstname: "",
       lastname: "",
       email: "",
-      imageurl: "",
+      imageurl:
+        "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png", //default images
       gpa: 0.0,
       CampusId: null,
     });
@@ -109,80 +110,62 @@ function AddStudents() {
 
   return (
     <div>
-      <h1 style={{ fontFamily: "georgia,garamond,serif" }}>
-        Add a New Student!
-      </h1>
-      <p />
-      <h3>
-        To proceed, please ensure you have entered a valid first name, last
-        name, and email address.
-        <br />
-        These fields are essential for us to assist you.
-      </h3>
+      <h1>Add a New Student!</h1>
+      <p className="form-note-p">
+        To proceed, please ensure you have entered a valid first name, lastname,
+        and email address.These fields are essential for us to assist you.
+      </p>
       <form onSubmit={handleSubmit}>
-        <label>
-          First Name:{" "}
-          <input
-            type="text"
-            name="firstname"
-            value={state.firstname}
-            onChange={handleChange}
-            placeholder="Enter First Name"
-            required
-            pattern="[A-Za-z ]+"
-          ></input>
-        </label>
-        <br />
-        <label>
-          Last Name:{" "}
-          <input
-            type="text"
-            name="lastname"
-            value={state.lastname}
-            onChange={handleChange}
-            placeholder="Enter Last Name"
-            required
-            pattern="[A-Za-z ]+"
-          ></input>
-        </label>
-        <br />
-        <label>
-          E-Mail:{" "}
-          <input
-            type="email"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-            placeholder="Enter E-Mail Address"
-            required
-          ></input>
-        </label>
-        <br />
-        <label>
-          Image URL:{" "}
-          <input
-            type="url"
-            name="imageurl"
-            value={state.imageurl}
-            onChange={handleChange}
-            placeholder="Enter a Valid Image URL"
-          ></input>
-        </label>
-        <br />
-        <label>
-          GPA:{" "}
-          <input
-            type="number"
-            name="gpa"
-            max={4.0}
-            min={0.0}
-            step="0.01"
-            value={state.gpa}
-            onChange={handleChange}
-            placeholder="Enter GPA"
-          ></input>
-        </label>
-        <br />
+        <label>First Name: </label>
+        <input
+          type="text"
+          name="firstname"
+          value={state.firstname}
+          onChange={handleChange}
+          placeholder="Enter First Name"
+          required
+          pattern="[A-Za-z ]+"
+        />
+        <label>Last Name: </label>
+        <input
+          type="text"
+          name="lastname"
+          value={state.lastname}
+          onChange={handleChange}
+          placeholder="Enter Last Name"
+          required
+          pattern="[A-Za-z ]+"
+        />
+
+        <label>E-Mail: </label>
+        <input
+          type="email"
+          name="email"
+          value={state.email}
+          onChange={handleChange}
+          placeholder="Enter E-Mail Address"
+          required
+        />
+
+        <label>Image URL: </label>
+        <input
+          type="url"
+          name="imageurl"
+          value={state.imageurl}
+          onChange={handleChange}
+          placeholder="Enter a Valid Image URL"
+        />
+        <label>GPA: </label>
+        <input
+          type="number"
+          name="gpa"
+          max={4.0}
+          min={0.0}
+          step="0.01"
+          value={state.gpa}
+          onChange={handleChange}
+          placeholder="Enter GPA"
+        />
         <select onChange={handleSelect}>
           <option value="">Select a campus</option>
           {allCampuses.map((campus) => (
@@ -191,7 +174,6 @@ function AddStudents() {
             </option>
           ))}
         </select>
-        <br />
         <button type="submit" id="submit">
           Submit
         </button>

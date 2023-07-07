@@ -31,11 +31,6 @@ function AddCampus() {
     console.log("FETCH ALL Campuses FIRING IN USEEFFECT");
     fetchAllCampuses();
   }, []);
-  // //clear form - didnt work
-  // function clear(){
-  //     let element = document.getElementById("form");
-  //     element.reset()
-  // }
 
   function handleChange(event) {
     setNewCampus({ ...newCampus, [event.target.name]: event.target.value });
@@ -59,7 +54,7 @@ function AddCampus() {
         name: newCampus.campusName,
         address: newCampus.address,
         imageurl:
-          "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+          "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", //default image
         description: newCampus.description,
       };
     }
@@ -70,44 +65,22 @@ function AddCampus() {
 
     setNewCampus({
       campusName: "",
-      imageurl: "",
+      imageurl:
+        "https://images.unsplash.com/photo-1532649538693-f3a2ec1bf8bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", //default image
       address: "",
       description: "",
     });
   }
-  // function handleSubmit(event) {
-  //     console.log(newCampus);
-
-  //     try {
-  //         axios.post('http://localhost:8080/api/campus/addCampus', {
-  //             name: newCampus.campusName,
-  //             imageurl: newCampus.imageUrl,
-  //             address: newCampus.address,
-  //             description: newCampus.description
-  //         })
-  //         .then(response => {
-  //             console.log(response.data);
-
-  //             //clear form here after data is used
-  //
-  //         });
-  //     } catch (error) {
-  //         console.log(error);
-  //     }
-  // }
 
   return (
     <div>
-      <h1 style={{ fontFamily: "georgia,garamond,serif" }}>Add Campus:</h1>
-
-      <h3>
+      <h1>Add Campus:</h1>
+      <p className="form-note-p">
         To proceed, please ensure you have entered a valid name and address.
-        <br />
         These fields are essential for us to assist you.
-      </h3>
+      </p>
       <form id="form" onSubmit={handleSubmit}>
-        <p></p>
-        College Name:{" "}
+        <label>College Name:</label>
         <input
           type="text"
           id="nameCollege"
@@ -118,8 +91,7 @@ function AddCampus() {
           required
           pattern="[A-Za-z ]+"
         />
-        <p></p>
-        Image URL:{" "}
+        <label>Image URL:</label>
         <input
           type="url"
           id="imageurl"
@@ -128,8 +100,7 @@ function AddCampus() {
           onChange={handleChange}
           placeholder="Enter a Valid Image URL"
         />
-        <p></p>
-        Address:{" "}
+        <label>Address:</label>
         <input
           type="text"
           id="address"
@@ -139,8 +110,7 @@ function AddCampus() {
           placeholder="Enter Address"
           required
         />
-        <p></p>
-        Description:{" "}
+        <label> Description:</label>
         <input
           type="text"
           id="description"
@@ -149,14 +119,8 @@ function AddCampus() {
           onChange={handleChange}
           placeholder="Enter description"
         />
-        <p></p>
         <button id="submit">Submit</button>
       </form>
-
-      <p></p>
-      {/* <Link to= {`/campuses/${newCampus.id}`}> */}
-
-      {/* </Link> */}
     </div>
   );
 }

@@ -12,12 +12,6 @@ const EditStudent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //   const [formData, setFormData] = useState({
-  //     firstname: student.firstname,
-  //     lastname: student.lastname,
-  //     email: student.email,
-  //     gpa: student.gpa,
-  //   });
 
   useEffect(() => {
     const fetchStudent = async () => {
@@ -66,15 +60,6 @@ const EditStudent = () => {
     fetchAllCampuses();
   }, []);
 
-  // function handleSelect(event) {
-  //   console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
-  //   setCurrentStudent({
-  //     ...currentStudent,
-  //     CampusId: event.target.value,
-  //   });
-  //   console.log(currentStudent);
-  // }
-
   const handleSelect = (event) => {
     console.log("THIS IS HANDLE SELECT AND THE EVENT PASSED IN", event);
     setCurrentStudent({
@@ -88,79 +73,66 @@ const EditStudent = () => {
 
   return (
     <div>
-      <h3>
-        To proceed, please ensure you have entered a valid first name, last
-        name, and email address.
-        <br />
-        These fields are essential for us to assist you.
-      </h3>
+      <p className="form-note-p">
+        To proceed, please ensure you have entered a valid first name, lastname,
+        and email address.These fields are essential for us to assist you.
+      </p>
       {currentStudent ? (
         <form onSubmit={handleSubmit}>
-          <label>
-            First Name:
-            <input
-              type="text"
-              name="firstname"
-              value={currentStudent.firstname}
-              onChange={handleChange}
-              required
-              pattern="[A-Za-z ]+"
-            />
-          </label>
-          <br />
-          <label>
-            Last Name:
-            <input
-              type="text"
-              name="lastname"
-              value={currentStudent.lastname}
-              onChange={handleChange}
-              required
-              pattern="[A-Za-z ]+"
-            />
-          </label>
-          <br />
-          <label>
-            E-Mail:
-            <input
-              type="email"
-              name="email"
-              value={currentStudent.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Image URL:
-            <input
-              type="url"
-              name="imageurl"
-              value={currentStudent.imageurl}
-              onChange={handleChange}
-              placeholder="Enter a Valid Image URL"
-            />
-          </label>
-          <br />
-          <label>
-            GPA:
-            <input
-              type="number"
-              name="gpa"
-              value={currentStudent.gpa}
-              onChange={handleChange}
-              min={0}
-              max={4}
-              step={0.1}
-            />
-          </label>
-          <br />
-          {console.log(currentStudent)}
-          {console.log(allCampuses)}
+          <label>First Name:</label>
+          <input
+            type="text"
+            name="firstname"
+            value={currentStudent.firstname}
+            onChange={handleChange}
+            required
+            pattern="[A-Za-z ]+"
+          />
 
+          <label>Last Name:</label>
+          <input
+            type="text"
+            name="lastname"
+            value={currentStudent.lastname}
+            onChange={handleChange}
+            required
+            pattern="[A-Za-z ]+"
+          />
+
+          <label>E-Mail:</label>
+          <input
+            type="email"
+            name="email"
+            value={currentStudent.email}
+            onChange={handleChange}
+            required
+          />
+
+          <label>Image URL:</label>
+          <input
+            type="url"
+            name="imageurl"
+            value={currentStudent.imageurl}
+            onChange={handleChange}
+            placeholder="Enter a Valid Image URL"
+          />
+
+          <label>GPA:</label>
+
+          <input
+            type="number"
+            name="gpa"
+            value={currentStudent.gpa}
+            onChange={handleChange}
+            min={0}
+            max={4}
+            step={0.1}
+          />
+          {/*  It's similar, jsut that what if currentStudent.Campus is null? we will get an error, 
+          so we make this solution*/}
           {currentStudent.Campus ? (
             <select onChange={handleSelect}>
-              <option value={currentStudent.Campus.name}>
+              <option value={currentStudent.Campus.id}>
                 {currentStudent.Campus.name}
               </option>
               {allCampuses.map((campus) => (
@@ -179,7 +151,6 @@ const EditStudent = () => {
               ))}
             </select>
           )}
-          <br />
           <button type="submit">Submit</button>
         </form>
       ) : (

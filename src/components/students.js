@@ -36,53 +36,25 @@ export default function Students() {
 
   return (
     <div>
-      <h1
-        style={{
-          fontFamily: "georgia,garamond,serif",
-          fontSize: "40px",
-          fontStyle: "italic",
-        }}
-      >
-        All Students
-      </h1>
+      <h1>All Students</h1>
 
       <Link to="/addstudents">
         <button>Add a New Student</button>
       </Link>
 
       {allStudents.length > 0 ? (
-        <ul
-          className="list-students"
-          style={{
-            listStyle: "none",
-          }}
-        >
+        <ul className="list-students">
           {allStudents.map((student, index) => (
-            <li
-              key={index}
-              style={{
-                display: "inline-block",
-                marginRight: "70px",
-                listStyle: "none",
-              }}
-              className="list-students"
-            >
-              <div>
-                <StudentCard
-                  imageUrl={student.imageurl}
-                  firstName={student.firstname}
-                  lastName={student.lastname}
-                  studentId={student.id}
-                />
-              </div>
-              <p>
-                <button onClick={() => deleteStudent(student.id)} id="delete">
-                  {" "}
-                  X{" "}
-                </button>
-                {/* <Link to={`/students/editStudent/${student.id}`}>
-                <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> </Link>  */}
-              </p>
+            <li key={index} className="list-students">
+              <StudentCard
+                imageUrl={student.imageurl}
+                firstName={student.firstname}
+                lastName={student.lastname}
+                studentId={student.id}
+              />
+              <button onClick={() => deleteStudent(student.id)} id="delete">
+                X
+              </button>
             </li>
           ))}
         </ul>
@@ -92,21 +64,3 @@ export default function Students() {
     </div>
   );
 }
-
-// from line 45 :  <h4 style= {{fontFamily:'georgia,garamond,serif'}} >Student: {student.firstname} {student.lastname}
-
-/*
- <p>
-                <h4 style={{ fontFamily: "georgia,garamond,serif" }}>
-                  Student: {student.firstname} {student.lastname}
-                  <button onClick={() => deleteStudent(student.id)} id="delete">
-                    {" "}
-                    X{" "}
-                  </button>
-                  <button onClick={() => editStudent(student)} id="edit">
-                    {" "}
-                    Edit Student{" "}
-                  </button>
-                </h4>
-              </p>
-*/

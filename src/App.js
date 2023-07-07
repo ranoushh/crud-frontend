@@ -15,21 +15,18 @@ function App() {
     <Router>
       <div className="App">
         {/* Navigation */}
-
-        <br></br>
-
         <nav>
-          <Link to="/" style={{ marginLeft: "240px", float: "left" }}>
-            Home
-          </Link>{" "}
-          <Link to="/students" style={{ marginRight: "140px", float: "right" }}>
-            Students
-          </Link>{" "}
-          <Link to="/campuses" style={{ marginRight: "10px", float: "right" }}>
-            Campuses
-          </Link>{" "}
-          {/* <Link to="/AddStudents">Add Students</Link> {" "} 
-              {/* <Link to="/addcampus">Add Campus</Link> {" "} */}
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/students">Students</Link>
+            </li>
+            <li>
+              <Link to="/campuses">Campuses</Link>
+            </li>
+          </ul>
         </nav>
 
         {/* Routes */}
