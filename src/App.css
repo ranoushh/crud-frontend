@@ -68,8 +68,6 @@
   border-radius: 15px;
   padding: 5px 15px;
   transition: border-color 0.5s ease-in;
-  /* font-family: "Berkshire Swash", cursive; */
-  /* font-family: "Moirai One", cursive; */
   font-family: "DM Serif Display", serif;
 }
 .header-style nav ul li a {
