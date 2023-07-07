@@ -12,8 +12,8 @@ const CampusView = (props) => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
   const [students, setStudents] = useState([]);
   const { id } = useParams();
- 
-console.log(currentCampus)
+
+  console.log(currentCampus);
 
   useEffect(() => {
     fetchCampus();
@@ -27,40 +27,36 @@ console.log(currentCampus)
       console.log(response);
       setCurrentCampus(response.data);
       setStudents(response.data.Students);
-      console.log(response.data.Students)
+      console.log(response.data.Students);
     } catch (error) {
       console.log(error);
     }
   };
 
-   async function deleteStudent(id) {
+  async function deleteStudent(id) {
     console.log("delete student button reached");
-     await dispatch(deleteStudentThunk(id));
+    await dispatch(deleteStudentThunk(id));
     await fetchCampus();
   }
 
-
-
-    const renderAllStudent = () => {
-      return students.map((student) => {
-        return (
-          <div key={student.id}>
-            <div>
-              <img src={student.imageurl} alt={student.firstname} />
-            </div>
-            <Link to={`/students/${student.id}`}>
-              <h4>{student.firstname + " " + student.lastname}</h4>
-            </Link>
-            {/* <Link to={`/campuses/${currentCampus.id}`}> */}
-            <button onClick={() => deleteStudent(student.id)} id= "delete"> X </button>
-            {/* </Link> */}
-            <h5>{currentCampus.name}</h5>
+  const renderAllStudent = () => {
+    return students.map((student) => {
+      return (
+        <div key={student.id}>
+          <div>
+            <img src={student.imageurl} alt={student.firstname} />
           </div>
-        );
-      });
-    };
-
-  
+          <Link to={`/students/${student.id}`}>
+            <h4>{student.firstname + " " + student.lastname}</h4>
+          </Link>
+          <button onClick={() => deleteStudent(student.id)} id="delete">
+            X
+          </button>
+          <h5>{currentCampus.name}</h5>
+        </div>
+      );
+    });
+  };
 
   const dispatch = useDispatch();
 
@@ -81,12 +77,14 @@ console.log(currentCampus)
                 <p>{currentCampus.description}</p>
               </article>
             </section>
-            <br />
             <address>{currentCampus.address}</address>
             <Link to={`/campuses`}>
-            <button onClick={() => deleteCampus(currentCampus.id)} id="delete">
-              X
-            </button>
+              <button
+                onClick={() => deleteCampus(currentCampus.id)}
+                id="delete"
+              >
+                X
+              </button>
             </Link>
             <Link to={`/campuses/editcampus/${currentCampus.id}`}>
               <button> Edit Campus</button>

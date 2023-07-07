@@ -4,7 +4,6 @@ import {
   deleteCampusThunk,
   fetchAllCampusesThunk,
 } from "../redux/campuses/campuses.action";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import CampusCard from "./CampusCard";
 
@@ -31,32 +30,15 @@ export default function Campuses() {
 
   return (
     <div>
-      <br></br>
-      <h1
-        style={{
-          fontFamily: "georgia,garamond,serif",
-          fontSize: "40px",
-          fontStyle: "italic",
-        }}
-      >
-        All Campuses
-      </h1>
-      {/* <a href="/addcampus">
-          <button>Add Campus</button>
-        </a> */}
-
+      <h1>All Campuses</h1>
       <Link to="/addcampus">
         <button>Add New Campus</button>
       </Link>
-
       <div>
         {allCampuses.length > 0 ? (
           <ul>
             {allCampuses.map((campus) => (
-              <li
-                key={campus.id}
-                style={{ display: "inline-block", marginRight: "70px" }}
-              >
+              <li key={campus.id}>
                 <button onClick={() => deleteCampus(campus.id)} id="delete">
                   x
                 </button>

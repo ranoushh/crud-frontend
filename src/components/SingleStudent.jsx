@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { editStudentThunk, deleteStudentThunk } from "../redux/students/students.action";
+import {
+  editStudentThunk,
+  deleteStudentThunk,
+} from "../redux/students/students.action";
 import { useDispatch } from "react-redux";
 
 const SingleStudent = (props) => {
@@ -27,9 +30,9 @@ const SingleStudent = (props) => {
     fetchStudent();
   }, [id]);
 
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
-  function editStudent(student){
+  function editStudent(student) {
     dispatch(editStudentThunk(student));
   }
 
@@ -49,15 +52,18 @@ const SingleStudent = (props) => {
             src={student.imageurl}
             alt={student.firstname}
           />
-          <p></p>
-          <Link to={`/students/editStudent/${student.id}`}>
-            <button onClick={() => editStudent(student)} id= "edit"> Edit Student </button> 
-          </Link>
-          <Link to={`/students`}>
-          <button onClick={() => deleteStudent(student.id)} id="delete">
-              X
-            </button>
+          <div>
+            <Link to={`/students/editStudent/${student.id}`}>
+              <button onClick={() => editStudent(student)} id="edit">
+                Edit Student
+              </button>
             </Link>
+            <Link to={`/students`}>
+              <button onClick={() => deleteStudent(student.id)} id="delete">
+                X
+              </button>
+            </Link>
+          </div>
           {student.CampusId !== null ? (
             <div>
               <img
@@ -65,9 +71,10 @@ const SingleStudent = (props) => {
                 src={student.Campus.imageurl}
                 alt=""
               />
-              <Link to = {`/campuses/${student.CampusId}`}><h2>{student.Campus.name}</h2></Link>
+              <Link to={`/campuses/${student.CampusId}`}>
+                <h2>{student.Campus.name}</h2>
+              </Link>
             </div>
-            
           ) : (
             <h1>Not enrolled in a campus</h1>
           )}

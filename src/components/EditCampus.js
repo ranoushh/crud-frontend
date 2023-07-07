@@ -4,17 +4,22 @@ import { editCampusThunk } from "../redux/campuses/campuses.action";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { editStudentThunk, fetchAllStudentsThunk } from "../redux/students/students.action";
+import {
+  editStudentThunk,
+  fetchAllStudentsThunk,
+} from "../redux/students/students.action";
 
 const EditCampus = () => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
-  const allStudents = useSelector((state) => state.students.allStudents.filter(allStudents => allStudents.CampusId === null));
-  // const filteredStudents = state.allStudents.filter(allStudents => allStudents.CampusId === null);
-  const [ID, setID] = useState(0);
+  const allStudents = useSelector((state) =>
+    state.students.allStudents.filter(
+      (allStudents) => allStudents.CampusId === null
+    )
+  );
+
   let updatedStudent = {};
 
   console.log("filtered?" + allStudents);
-  // const [updatedCampus, setUpdatedCampus] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,25 +40,17 @@ const EditCampus = () => {
     fetchCampus(); //do we need this ?
   }, [id]);
 
-  // const [formData, setFormData] = useState({
-  //   // name: currentCampus.name,
-  //   // imageurl: currentCampus.imageurl,
-  //   // address: currentCampus.address,
-  //   // description: currentCampus.description,
-  // });
-
   function handleChange(e) {
     setCurrentCampus({
       ...currentCampus,
       [e.target.name]: e.target.value,
     });
     console.log(currentCampus);
-  };
-
+  }
 
   //handleSelect takes studentId(e.target.value) and we want to go through our array and find the student with this id,
-  //then we set the campusId field for that student = to the campus we are editing 
-  //send it to our thunk 
+  //then we set the campusId field for that student = to the campus we are editing
+  //send it to our thunk
   function handleSelect(studentId) {
     console.log("student select reached");
     updatedStudent = {
@@ -62,8 +59,6 @@ const EditCampus = () => {
     };
     console.log(currentCampus);
   }
-  
-  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -84,11 +79,6 @@ const EditCampus = () => {
     navigateDelay();
   }
 
-  // function handleEditCampus(id) {
-  //   console.log("editing campus reached");
-  //   dispatch(editCampusThunk(id, updatedCampus));
-  // }
-
   const fetchAllStudents = () => {
     console.log("RUNNING DISPATCH FROM fetchAllStudents");
     return dispatch(fetchAllStudentsThunk());
@@ -104,84 +94,59 @@ const EditCampus = () => {
     <div>
       {currentCampus ? (
         <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={currentCampus.name}
-              onChange={handleChange}
-              pattern="[A-Za-z ]+" 
-              required
-            />
-          </label>
-          <br></br>
-          <label>
-            Image URL:
-            <input
-              type="url"
-              name="imageurl"
-              value={currentCampus.imageurl}
-              onChange={handleChange}
-              placeholder="Enter a Valid Image URL"
-            />
-          </label>
-          <br></br>
-          <label>
-            Address:
-            <input
-              type="text"
-              name="address"
-              value={currentCampus.address}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br></br>
-          <label>
-            Description:
-            <input
-              type="text"
-              name="description"
-              value={currentCampus.description}
-              onChange={handleChange}
-            />
-          </label>
-        <br></br>
-        <div>
-          {/* e.target.value is our selected student's id: we pass it to handleSelect*/}
-        <select id="selectStudent" onChange={(e) => handleSelect(e.target.value)}>
-          <option value="">Select Student</option>
-          {allStudents.map((student) => (
-            <option value={student.id} key={student.id}>
-              {student.firstname + " " + student.lastname}
-            </option>
-          ))}
-        </select>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={currentCampus.name}
+            onChange={handleChange}
+            pattern="[A-Za-z ]+"
+            required
+          />
+          <label>Image URL:</label>
+          <input
+            type="url"
+            name="imageurl"
+            value={currentCampus.imageurl}
+            onChange={handleChange}
+            placeholder="Enter a Valid Image URL"
+          />
 
+          <label>Address:</label>
+          <input
+            type="text"
+            name="address"
+            value={currentCampus.address}
+            onChange={handleChange}
+            required
+          />
 
-          {/* <select name= "Select Student" id ="selectStudent">
-
-            <option value= "">Select Student</option>
-            {allStudents.map((student) => (
-                <option onSelect={handleSelect(student)}value={student.id} key={student.id}>
-                  {student.firstname + " "+ student.lastname};
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            value={currentCampus.description}
+            onChange={handleChange}
+          />
+          <div>
+            {/* e.target.value is our selected student's id: we pass it to handleSelect*/}
+            <select
+              id="selectStudent"
+              onChange={(e) => handleSelect(e.target.value)}
+            >
+              <option value="">Select Student</option>
+              {allStudents.map((student) => (
+                <option value={student.id} key={student.id}>
+                  {student.firstname + " " + student.lastname}
                 </option>
-            ))};
-
-
-          </select> */}
-          
-        </div>
-          <br></br>
+              ))}
+            </select>
+          </div>
           <button type="submit">Submit</button>
-
         </form>
       ) : (
         <div>Loading Campus Data...</div>
       )}
-
-
     </div>
   );
 };
