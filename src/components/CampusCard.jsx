@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../style/CampusCard.css";
 
 const CampusCard = (props) => {
   return (
     <div className="campus-card">
-      <Link to={`/campuses/${props.campusId}`}>
+      <Link to={`/campuses/${props.campusId}`} className="campus-link">
         <div className="frame">
-          <h2 style={{ fontFamily: "georgia,garamond,serif" }}>
-            {props.campusName}
-          </h2>
           <div className="campus-image">
-            <img src={props.imageUrl} width="350" height="300" />
+            <img src={props.imageUrl} alt={props.campusName} />
           </div>
+          <p className="campus-name">{props.campusName}</p>
         </div>
       </Link>
     </div>
