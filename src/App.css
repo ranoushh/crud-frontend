@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Moirai+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* Header */
+.header-style nav {
+  display: flex;
+  align-items: center;
+  padding: 25px 0;
+  background-color: #004640;
+}
+.header-style .header-logo h1 {
+  margin: 0 20px;
+  font-size: 2.1rem;
+  /* font-family: "Berkshire Swash", cursive; */
+  /* font-family: "Moirai One", cursive; */
+  font-family: "DM Serif Display", serif;
+  color: #ece0cd;
+}
+.header-style nav ul {
+  margin: 0 30px 0 auto;
+}
+.header-style nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 19px;
+  font-size: 1.5rem;
+  border: 2px solid;
+  border-color: transparent;
+  border-radius: 15px;
+  padding: 5px 15px;
+  transition: border-color 0.5s ease-in;
+  /* font-family: "Berkshire Swash", cursive; */
+  /* font-family: "Moirai One", cursive; */
+  font-family: "DM Serif Display", serif;
+}
+.header-style nav ul li a {
+  text-decoration: none;
+  color: #ece0cd;
+}
+.header-style nav ul li:hover {
+  border-color: #b96d6e;
+  /* background-color: red; */
+}
+
+.header-style .header-logo .certificate {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 3px;
+  top: 5px;
 }
