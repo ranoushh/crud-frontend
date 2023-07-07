@@ -3,15 +3,15 @@ import React from "react";
 export default function Home() {
   return (
     <div className="main-div-homepage">
-      <div className="bg-img">
-        <div className="overlay">
+      <div className="welcome-background">
+        <div className="background-filter ">
           <div className="welcome-container">
             <h1>Welcome to Campus Connect</h1>
             <p>Where education meets connection</p>
           </div>
         </div>
       </div>
-      <hr className="rounded" />
+      <hr />
       <p className="welcome-paragraphs">
         One of the key features of Campus Connect is the ability to explore the
         academic achievements of enrolled students. With a few simple taps, you
