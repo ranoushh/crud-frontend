@@ -1,3 +1,4 @@
+import "../style/Edit_Add_forms.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editCampusThunk } from "../redux/campuses/campuses.action";
@@ -91,7 +92,12 @@ const EditCampus = () => {
   }, []);
 
   return (
-    <div>
+    <div className="form-container">
+      <h1>Edit Campus</h1>
+      <p className="form-note-p">
+        To proceed, please ensure you have entered a valid name and address.
+        These fields are essential for us to assist you.
+      </p>
       {currentCampus ? (
         <form onSubmit={handleSubmit}>
           <label>Name:</label>

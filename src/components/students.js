@@ -6,7 +6,7 @@ import {
   editStudentThunk,
 } from "../redux/students/students.action";
 import { Link } from "react-router-dom";
-import StudentCard from "./StudentCard/StudentCard";
+import StudentCard from "./StudentCard";
 import "../App.css";
 
 export default function Students() {

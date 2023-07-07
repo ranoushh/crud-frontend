@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+.frame {
+  height: auto;
+  width: 250px;
+  text-align: center;
+}
+
+.student-image {
+  padding-top: 20px;
+}
+.student-image img {
+  height: 200px;
+  width: 180px;
+}
+
+.allCampus {
+  background-color: #ece0cd;
+}
+.allCampus h1 {
+  margin: 20px 0;
+  color: #295580;
+  font-family: "DM Serif Display", serif;
+  font-size: 3.5rem;
+}
+
+.allCampus button {
+  /* background-color: #ffffff; */
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* color: #222222; */
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.allCampus button:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow 0.2s;
+}
+
+.allCampus button:active {
+  background-color: #f7f7f7;
+  border-color: #000000;
+  transform: scale(0.96);
+}
+
+.allCampus button:disabled {
+  border-color: #dddddd;
+  color: #dddddd;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.allCampus #delete {
+  height: 50px;
+  color: #ece0cd;
+  border-color: #ece0cd;
+  background-color: #b96d6e;
+}
+
+.allCampus #delete:hover {
+  background-color: #893739;
+}
+
+.campus-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #ece0cd;
+  font-family: "DM Serif Display", serif;
+  text-align: center;
+}
+
+.campus-link .frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+.campus-link .frame .campus-image {
+  width: 100%;
+  height: 250px;
+}
+.campus-link .campus-image img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.campus-link .campus-name {
+  font-size: 1.4rem;
+  margin-top: 10px;
+}
+
+.campus-link:hover .campus-name {
+  text-decoration: underline;
+}
+
+.allCampus .add-btn {
+  background-color: #ece0cd;
+  color: #004640;
+  transition: all 0.5s ease-in !important;
+}
+.allCampus .add-btn:hover {
+  background-color: #004640;
+  color: #ece0cd;
+}

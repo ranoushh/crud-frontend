@@ -1,3 +1,4 @@
+import "../style/SingleCampus.css";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -6,7 +7,7 @@ import { useParams } from "react-router";
 import { deleteCampusThunk } from "../redux/campuses/campuses.action";
 import { deleteStudentThunk } from "../redux/students/students.action";
 import { Link } from "react-router-dom";
-import { render } from "@testing-library/react";
+import StudentCard from "./StudentCard";
 
 const CampusView = (props) => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
@@ -42,17 +43,18 @@ const CampusView = (props) => {
   const renderAllStudent = () => {
     return students.map((student) => {
       return (
-        <div key={student.id}>
-          <div>
-            <img src={student.imageurl} alt={student.firstname} />
+        <div key={student.id} className="card-wrapper">
+          <div className="button-container">
+            <button onClick={() => deleteStudent(student.id)} id="delete">
+              X
+            </button>
           </div>
-          <Link to={`/students/${student.id}`}>
-            <h4>{student.firstname + " " + student.lastname}</h4>
-          </Link>
-          <button onClick={() => deleteStudent(student.id)} id="delete">
-            X
-          </button>
-          <h5>{currentCampus.name}</h5>
+          <StudentCard
+            imageUrl={student.imageurl}
+            firstName={student.firstname}
+            lastName={student.lastname}
+            studentId={student.id}
+          />
         </div>
       );
     });
@@ -69,36 +71,44 @@ const CampusView = (props) => {
     <div>
       {currentCampus ? (
         <div>
-          <div>
+          <div className="campus-info-container">
             <section>
-              <img src={currentCampus.imageurl} alt={currentCampus.name} />
+              <div className="image-wrapper">
+                <img src={currentCampus.imageurl} alt={currentCampus.name} />
+              </div>
               <article>
                 <h1>{currentCampus.name}</h1>
                 <p>{currentCampus.description}</p>
               </article>
             </section>
-            <address>{currentCampus.address}</address>
-            <Link to={`/campuses`}>
-              <button
-                onClick={() => deleteCampus(currentCampus.id)}
-                id="delete"
-              >
-                X
-              </button>
-            </Link>
-            <Link to={`/campuses/editcampus/${currentCampus.id}`}>
-              <button> Edit Campus</button>
-            </Link>
+            <address>
+              <span>Address: </span>
+              {currentCampus.address}
+            </address>
+            <div className="button-container">
+              <Link to={`/campuses/editcampus/${currentCampus.id}`}>
+                <button className="edit-btn"> Edit Campus</button>
+              </Link>
+              <Link to={`/campuses`}>
+                <button
+                  onClick={() => deleteCampus(currentCampus.id)}
+                  id="delete"
+                  className="delete-btn"
+                >
+                  X
+                </button>
+              </Link>
+            </div>
           </div>
           <div>
-            <div>
+            <div className="student-info-container">
               <h1>Students on Campus</h1>
               <Link to={`/addStudents`}>
-                <button>Add a Student</button>
+                <button className="add-btn">Add a Student</button>
               </Link>
             </div>
             {currentCampus.Students !== 0 ? (
-              <div>{renderAllStudent()}</div>
+              <div className="list-students-grid">{renderAllStudent()}</div>
             ) : (
               <div>
                 <p>There are no students currently registered on this campus</p>

@@ -1,3 +1,4 @@
+import "../style/Edit_Add_forms.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -73,8 +74,8 @@ function AddCampus() {
   }
 
   return (
-    <div>
-      <h1>Add Campus:</h1>
+    <div className="form-container">
+      <h1>Add Campus</h1>
       <p className="form-note-p">
         To proceed, please ensure you have entered a valid name and address.
         These fields are essential for us to assist you.
@@ -119,7 +120,9 @@ function AddCampus() {
           onChange={handleChange}
           placeholder="Enter description"
         />
-        <button id="submit">Submit</button>
+        <button id="submit" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

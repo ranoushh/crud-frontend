@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+.single-student-page {
+  background-color: #ece0cd;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: "DM Serif Display", serif;
+}
+
+.single-student-page h1 {
+  color: #004640;
+  font-size: 4rem;
+  margin-bottom: 0px;
+}
+
+.single-student-page p {
+  color: #004640;
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+.single-student-page p span {
+  color: #b96d6e;
+}
+
+.single-student-page img.student-image {
+  width: 450px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.single-student-page .button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.single-student-page .edit-btn,
+.single-student-page .delete-btn {
+  background-color: #004640;
+  color: #ece0cd;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease-in;
+}
+
+.single-student-page .delete-btn:hover {
+  background-color: #893739;
+}
+.single-student-page .edit-btn:hover {
+  background-color: #295580;
+}
+
+.single-student-page .campus-info {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  border: 3px solid #004640;
+  border-radius: 15px;
+  padding: 20px 0 50px;
+}
+.single-student-page .campus-info p {
+  color: #b96d6e;
+}
+
+.single-student-page .campus-info img {
+  width: 80%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.single-student-page .campus-info h2 {
+  color: #004640;
+  font-size: 3rem;
+  margin-bottom: 0px;
+}
+.single-student-page .campus-info a {
+  text-decoration: none;
+}
+.single-student-page .campus-info:hover h2 {
+  text-decoration: underline;
+}
+
+.single-student-page .not-enrolled {
+  color: #b96d6e;
+  font-size: 20px;
+  margin-top: 20px;
+}
