@@ -1,3 +1,4 @@
+import "../style/Edit_Add_forms.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { addNewStudentThunk } from "../redux/students/students.action";
@@ -109,8 +110,8 @@ function AddStudents() {
   }
 
   return (
-    <div>
-      <h1>Add a New Student!</h1>
+    <div className="form-container">
+      <h1>Add A Student</h1>
       <p className="form-note-p">
         To proceed, please ensure you have entered a valid first name, lastname,
         and email address.These fields are essential for us to assist you.

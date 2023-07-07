@@ -1,3 +1,4 @@
+import "../style/Edit_Add_forms.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editStudentThunk } from "../redux/students/students.action";
@@ -72,7 +73,8 @@ const EditStudent = () => {
   console.log("THIS IS ALLCAMPUSES", allCampuses);
 
   return (
-    <div>
+    <div className="form-container">
+      <h1>Edit Student</h1>
       <p className="form-note-p">
         To proceed, please ensure you have entered a valid first name, lastname,
         and email address.These fields are essential for us to assist you.

@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ece0cd;
+  border-radius: 5px;
+  font-family: "DM Serif Display", serif;
+}
+
+.form-container h1 {
+  color: #004640;
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.form-container p.form-note-p {
+  color: #b96d6e;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  font-size: 1.4rem;
+  color: #004640;
+  margin-bottom: 5px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b96d6e;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-container input[type="number"]::-webkit-inner-spin-button,
+.form-container input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-container button[type="submit"] {
+  background-color: #004640;
+  color: #ece0cd;
+  border: none;
+  padding: 10px 80px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease-in;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #b96d6e;
+}
