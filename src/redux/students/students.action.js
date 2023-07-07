@@ -28,7 +28,7 @@ export const editStudent = (updateInput) => ({
 export const fetchAllStudentsThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:8080/api/student");
+      const response = await axios.get("https://crud-backend-alpha.vercel.app/api/student");
       console.log("data", response.data);
       dispatch(fetchAllStudents(response.data));
     } catch (error) {
@@ -48,7 +48,7 @@ export const addNewStudentThunk = ({
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/student/addStudent",
+        "https://crud-backend-alpha.vercel.app/api/student/addStudent",
         {
           firstname: firstname,
           lastname: lastname,
@@ -72,7 +72,7 @@ export const deleteStudentThunk = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios({
-        url: `http://localhost:8080/api/student/removeStudent/${id}`,
+        url: `https://crud-backend-alpha.vercel.app/api/student/removeStudent/${id}`,
         method: "delete",
       });
       console.log(id);
@@ -87,7 +87,7 @@ export const editStudentThunk = (updateInput) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/student/updateStudent/${updateInput.id}`,
+        `https://crud-backend-alpha.vercel.app/api/student/updateStudent/${updateInput.id}`,
         updateInput
       );
       console.log(response.data);

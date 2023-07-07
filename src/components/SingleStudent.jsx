@@ -20,7 +20,7 @@ const SingleStudent = (props) => {
     const fetchStudent = async () => {
       try {
         const studentResults = await axios.get(
-          `http://localhost:8080/api/student/${id}`
+          `https://crud-backend-alpha.vercel.app/api/student/${id}`
         );
         console.log(studentResults.data);
         setStudent(studentResults.data);
