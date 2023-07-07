@@ -28,7 +28,7 @@ const EditCampus = () => {
     const fetchCampus = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/campus/${id}`
+          `https://crud-backend-alpha.vercel.app/api/campus/${id}`
         );
         console.log(response);
         setCurrentCampus(response.data);
