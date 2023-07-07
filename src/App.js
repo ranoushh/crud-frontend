@@ -17,20 +17,6 @@ function App() {
       <div className="App">
         {/* Navigation */}
         <Header />
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/students">Students</Link>
-            </li>
-            <li>
-              <Link to="/campuses">Campuses</Link>
-            </li>
-          </ul>
-        </nav> */}
-
         {/* Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
