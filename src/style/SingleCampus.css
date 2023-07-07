@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+/* font-family: "DM Serif Display", serif; */
+
+.campus-info-container {
+  margin: 30px 0;
+  font-family: "DM Serif Display", serif;
+}
+.campus-info-container section img {
+  width: 100%;
+  height: 100%;
+}
+.campus-info-container section .image-wrapper {
+  width: 80%;
+  height: 500px;
+  border-right: 5px solid #004640;
+  border-bottom: 5px solid #004640;
+  border-left: 5px solid #b96d6e;
+  border-top: 5px solid #b96d6e;
+  margin: 0 auto;
+}
+.campus-info-container section article h1 {
+  color: #004640;
+  font-size: 4rem;
+  margin: 0;
+}
+
+.campus-info-container section article p,
+.campus-info-container address {
+  color: #b96d6e;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+.campus-info-container address span {
+  color: #004640;
+}
+
+.student-info-container h1 {
+  color: #004640;
+  font-size: 2.8rem;
+  margin: 20px 0;
+  font-family: "DM Serif Display", serif;
+}
+
+.campus-info-container .button-container,
+.student-info-container .button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 50px;
+  width: 100%;
+  column-gap: 10px;
+  text-align: center;
+}
+
+.campus-info-container .edit-btn,
+.campus-info-container .delete-btn,
+.student-info-container .add-btn {
+  background-color: #004640;
+  color: #ece0cd;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease-in;
+}
+
+.campus-info-container .delete-btn:hover {
+  background-color: #893739;
+}
+.campus-info-container .edit-btn:hover,
+.student-info-container .add-btn:hover {
+  background-color: #295580;
+}
+
+.list-students-grid button {
+  /* background-color: #ffffff; */
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* color: #222222; */
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.list-students-grid button:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow 0.2s;
+}
+
+.list-students-grid button:active {
+  background-color: #f7f7f7;
+  border-color: #000000;
+  transform: scale(0.96);
+}
+
+.list-students-grid button:disabled {
+  border-color: #dddddd;
+  color: #dddddd;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.list-students-grid #delete {
+  height: 50px;
+  color: #ece0cd;
+  border-color: #ece0cd;
+  background-color: #b96d6e;
+}
+
+.list-students-grid #delete:hover {
+  background-color: #893739;
+}

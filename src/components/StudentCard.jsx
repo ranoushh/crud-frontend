@@ -8,7 +8,7 @@ const StudentCard = (props) => {
       <Link to={`/students/${props.studentId}`} className="student-link">
         <div className="frame">
           <div className="student-image">
-            <img src={props.imageUrl} width="150" height="150" />
+            <img src={props.imageUrl} alt={props.firstName} />
           </div>
           <p className="studetn-name">
             {props.firstName + " " + props.lastName}{" "}

@@ -6,6 +6,7 @@ import {
 } from "../redux/campuses/campuses.action";
 import { Link } from "react-router-dom";
 import CampusCard from "./CampusCard";
+import "../style/AllCampuses.css";
 
 export default function Campuses() {
   //need our allCampuses array.
@@ -29,27 +30,29 @@ export default function Campuses() {
   }
 
   return (
-    <div>
+    <div className="allCampus">
       <h1>All Campuses</h1>
       <Link to="/addcampus">
         <button>Add New Campus</button>
       </Link>
       <div>
         {allCampuses.length > 0 ? (
-          <ul>
+          <div className="list-students-grid">
             {allCampuses.map((campus) => (
-              <li key={campus.id}>
-                <button onClick={() => deleteCampus(campus.id)} id="delete">
-                  x
-                </button>
+              <div key={campus.id} className="card-wrapper">
+                <div className="button-container">
+                  <button onClick={() => deleteCampus(campus.id)} id="delete">
+                    x
+                  </button>
+                </div>
                 <CampusCard
                   campusId={campus.id}
                   campusName={campus.name}
                   imageUrl={campus.imageurl}
                 />
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
           <p>No campuses registered.</p>
         )}
