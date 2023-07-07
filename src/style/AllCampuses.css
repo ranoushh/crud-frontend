@@ -36,5 +36,11 @@
 }
 
 .allCampus .add-btn {
-  margin-bottom: 45px;
+  background-color: #ece0cd;
+  color: #004640;
+  transition: all 0.5s ease-in !important;
+}
+.allCampus .add-btn:hover {
+  background-color: #004640;
+  color: #ece0cd;
 }
