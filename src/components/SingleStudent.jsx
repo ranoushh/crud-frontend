@@ -1,3 +1,4 @@
+import "../style/SingleStudents.css";
 import React from "react";
 //import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -44,39 +45,53 @@ const SingleStudent = (props) => {
   return (
     <div>
       {student ? (
-        <div>
-          <h1>Name: {student.firstname + " " + student.lastname}</h1>
-          <p>gpa: {student.gpa}</p>
+        <div className="single-student-page">
+          <h1>{student.firstname + " " + student.lastname}</h1>
+          <p>
+            Email: <span>{student.email}</span>
+          </p>
+          <p>
+            GPA: <span>{student.gpa}</span>
+          </p>
           <img
-            style={{ width: 300, height: 300 }}
+            className="student-image"
             src={student.imageurl}
             alt={student.firstname}
           />
-          <div>
+          <div className="button-container">
             <Link to={`/students/editStudent/${student.id}`}>
-              <button onClick={() => editStudent(student)} id="edit">
+              <button
+                onClick={() => editStudent(student)}
+                id="edit"
+                className="edit-btn"
+              >
                 Edit Student
               </button>
             </Link>
             <Link to={`/students`}>
-              <button onClick={() => deleteStudent(student.id)} id="delete">
+              <button
+                onClick={() => deleteStudent(student.id)}
+                id="delete"
+                className="delete-btn"
+              >
                 X
               </button>
             </Link>
           </div>
           {student.CampusId !== null ? (
-            <div>
-              <img
-                style={{ width: 350, height: 300 }}
-                src={student.Campus.imageurl}
-                alt=""
-              />
+            <div className="campus-info">
               <Link to={`/campuses/${student.CampusId}`}>
                 <h2>{student.Campus.name}</h2>
               </Link>
+              <p>{student.Campus.description}</p>
+              <img
+                className="campus-image"
+                src={student.Campus.imageurl}
+                alt=""
+              />
             </div>
           ) : (
-            <h1>Not enrolled in a campus</h1>
+            <h1 className="not-enrolled">Not enrolled in a campus</h1>
           )}
         </div>
       ) : (

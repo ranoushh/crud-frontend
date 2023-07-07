@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+.frame {
+  height: auto;
+  width: 250px;
+  text-align: center;
+}
+
+.student-image {
+  padding-top: 20px;
+}
+.student-image img {
+  height: 200px;
+  width: 180px;
+}
+
+.all-students-page {
+  background-color: #ece0cd;
+}
+.all-students-page h1 {
+  margin: 20px 0;
+  color: #295580;
+  font-family: "DM Serif Display", serif;
+  font-size: 3.5rem;
+}
+
+.all-students-page button {
+  /* background-color: #ffffff; */
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* color: #222222; */
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.all-students-page button:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow 0.2s;
+}
+
+.all-students-page button:active {
+  background-color: #f7f7f7;
+  border-color: #000000;
+  transform: scale(0.96);
+}
+
+.all-students-page button:disabled {
+  border-color: #dddddd;
+  color: #dddddd;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.all-students-page #delete {
+  height: 50px;
+  color: #ece0cd;
+  border-color: #ece0cd;
+  background-color: #b96d6e;
+}
+
+.all-students-page #delete:hover {
+  background-color: #893739;
+}
+
+.student-link {
+  text-decoration: none;
+  color: #ece0cd;
+  font-family: "DM Serif Display", serif;
+}
+
+.student-link .studetn-name {
+  font-size: 1.4rem;
+  font-family: var();
+}
+.student-link:hover .studetn-name {
+  text-decoration: underline;
+}
+
+.add-btn {
+  background-color: #ece0cd;
+  color: #004640;
+  transition: all 0.5s ease-in !important;
+}
+.add-btn:hover {
+  background-color: #004640;
+  color: #ece0cd;
+}

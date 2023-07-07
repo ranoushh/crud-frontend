@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import { deleteCampusThunk } from "../redux/campuses/campuses.action";
 import { deleteStudentThunk } from "../redux/students/students.action";
 import { Link } from "react-router-dom";
-import { render } from "@testing-library/react";
+import StudentCard from "./StudentCard";
 
 const CampusView = (props) => {
   const [currentCampus, setCurrentCampus] = useState(undefined);
@@ -42,17 +42,30 @@ const CampusView = (props) => {
   const renderAllStudent = () => {
     return students.map((student) => {
       return (
-        <div key={student.id}>
-          <div>
-            <img src={student.imageurl} alt={student.firstname} />
+        // <div key={student.id}>
+        //   <div>
+        //     <img src={student.imageurl} alt={student.firstname} />
+        //   </div>
+        //   <Link to={`/students/${student.id}`}>
+        //     <h4>{student.firstname + " " + student.lastname}</h4>
+        //   </Link>
+        //   <button onClick={() => deleteStudent(student.id)} id="delete">
+        //     X
+        //   </button>
+        //   <h5>{currentCampus.name}</h5>
+        // </div>
+        <div key={student.id} className="card-wrapper">
+          <div className="button-container">
+            <button onClick={() => deleteStudent(student.id)} id="delete">
+              X
+            </button>
           </div>
-          <Link to={`/students/${student.id}`}>
-            <h4>{student.firstname + " " + student.lastname}</h4>
-          </Link>
-          <button onClick={() => deleteStudent(student.id)} id="delete">
-            X
-          </button>
-          <h5>{currentCampus.name}</h5>
+          <StudentCard
+            imageUrl={student.imageurl}
+            firstName={student.firstname}
+            lastName={student.lastname}
+            studentId={student.id}
+          />
         </div>
       );
     });
@@ -98,7 +111,7 @@ const CampusView = (props) => {
               </Link>
             </div>
             {currentCampus.Students !== 0 ? (
-              <div>{renderAllStudent()}</div>
+              <div className="list-students-grid">{renderAllStudent()}</div>
             ) : (
               <div>
                 <p>There are no students currently registered on this campus</p>
