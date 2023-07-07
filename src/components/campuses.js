@@ -33,7 +33,7 @@ export default function Campuses() {
     <div className="allCampus">
       <h1>All Campuses</h1>
       <Link to="/addcampus">
-        <button>Add New Campus</button>
+        <button className="add-btn">Add New Campus</button>
       </Link>
       <div>
         {allCampuses.length > 0 ? (
