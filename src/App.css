@@ -41,8 +41,6 @@ body {
   border-radius: 15px;
   padding: 5px 15px;
   transition: border-color 0.5s ease-in;
-  /* font-family: "Berkshire Swash", cursive; */
-  /* font-family: "Moirai One", cursive; */
   font-family: "DM Serif Display", serif;
 }
 
@@ -55,7 +53,6 @@ body {
   border-color: #b96d6e;
   /* background-color: red; */
 }
-
 .header-style .header-logo .certificate {
   position: relative;
   width: 32px;
@@ -105,4 +102,66 @@ body {
 
 .add-btn {
   margin-bottom: 45px;
+}
+
+.main-div-homepage {
+  margin: 0;
+  background-color: #004640;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.welcome-background {
+  background-size: 100%;
+  background-image: url("./giphy.gif");
+  height: calc(100vh - 80px);
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 100%;
+  /* filter: opacity(0.5); */
+}
+.background-filter {
+  background-color: rgba(84, 84, 84, 0.4);
+  background-size: 100% cover;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - 80px);
+}
+.welcome-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px);
+  text-align: center;
+  line-height: 60px;
+  color: #ece0cd;
+  font-family: "DM Serif Display", serif;
+}
+.welcome-container h1 {
+  margin: 0;
+  font-size: 4rem;
+}
+.welcome-container p {
+  font-size: 2rem;
+  margin: 0;
+}
+.welcome-paragraphs {
+  width: 70%;
+  font-size: 24px;
+  font-family: "DM Serif Display", serif;
+  color: #ece0cd;
+}
+.welcome-paragraphs:first-of-type {
+  margin-top: 50px;
+}
+
+.main-div-homepage hr {
+  margin: 0;
+  border-top: 8px solid #ece0cd;
+  /* border-radius: 5px; */
+  width: calc(100% - 2px);
 }
