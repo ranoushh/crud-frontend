@@ -6,7 +6,8 @@ import {
   editStudentThunk,
 } from "../redux/students/students.action";
 import { Link } from "react-router-dom";
-import StudentCard from "./StudentCard";
+import StudentCard from "./StudentCard/StudentCard";
+import "../App.css";
 
 export default function Students() {
   //allStudents accesses global state here to fetch all students in the db
@@ -35,29 +36,31 @@ export default function Students() {
   }, []);
 
   return (
-    <div>
+    <div className="all-students-page">
       <h1>All Students</h1>
 
       <Link to="/addstudents">
-        <button>Add a New Student</button>
+        <button className="add-btn">Add a New Student</button>
       </Link>
 
       {allStudents.length > 0 ? (
-        <ul className="list-students">
+        <div className="list-students-grid">
           {allStudents.map((student, index) => (
-            <li key={index} className="list-students">
+            <div key={index} className="card-wrapper">
+              <div className="button-container">
+                <button onClick={() => deleteStudent(student.id)} id="delete">
+                  X
+                </button>
+              </div>
               <StudentCard
                 imageUrl={student.imageurl}
                 firstName={student.firstname}
                 lastName={student.lastname}
                 studentId={student.id}
               />
-              <button onClick={() => deleteStudent(student.id)} id="delete">
-                X
-              </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No students registered.</p>
       )}
